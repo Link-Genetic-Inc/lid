@@ -45,7 +45,7 @@ Existing persistent identifier systems (e.g., DOI, Handle, ARK) address some of 
   * Maintains audit trails and optional CO₂-impact data.
 * **Ecosystem Components**:
 
-  * Open registry with versioned mappings.
+ * Registry with versioned mappings, available under open or commercial license.
   * Client libraries (JavaScript, Java, Python) for easy integration.
   * APIs for CMS, archives, and corporate systems.
 
@@ -56,7 +56,7 @@ Existing persistent identifier systems (e.g., DOI, Handle, ARK) address some of 
 * **Data minimization**: identifiers carry no personal information.
 * **Integrity**: mappings cryptographically signed to prevent tampering.
 * **Abuse prevention**: resolvers must handle malicious redirects, phishing attempts, and provide safe-browsing checks.
-* **Long-term trust**: governance under open standards, royalty-free patent policy.
+* **Long-term trust**: governance under open standards with clear patent licensing terms.
 
 ---
 
