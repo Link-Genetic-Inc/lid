@@ -1,0 +1,30 @@
+Link Genetic Community License (LCL) v1.0
+
+Copyright (c) 2025-2026 Link Genetic GmbH
+
+Permission is hereby granted, free of charge, to any person obtaining a
+copy of this software and associated documentation files (the "Software"),
+to use the Software for non-commercial purposes, including academic
+research, personal projects, and evaluation, subject to the following
+conditions:
+
+1. The above copyright notice and this permission notice shall be
+   included in all copies or substantial portions of the Software.
+
+2. Commercial use of the Software requires a separate Enterprise License
+   (LEL) from Link Genetic GmbH. Contact: licensing@linkgenetic.com
+
+3. The Software implements technology described in patent application
+   CH P220889. Use of the client libraries does not require a patent
+   license. Server-side implementations of the LinkID system require
+   appropriate licensing.
+
+4. Contributions to this repository require a signed Contributor License
+   Agreement (CLA). See CONTRIBUTING.md for details.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS
+OR IMPLIED.
+
+For full license terms: https://linkgenetic.com/licenses/lcl
+For Enterprise licensing: https://linkgenetic.com/licenses/enterprise
+For Public Interest licensing (academia/government): https://linkgenetic.com/licenses/lpil
