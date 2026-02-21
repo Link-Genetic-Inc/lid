@@ -1,142 +1,120 @@
-# LinkID (`linkid:`) — Persistent, Never-Break Identifiers for the Web
+# LinkID – Persistent Identifiers for the Web
 
-[![Spec Status](https://img.shields.io/badge/status-Community%20Draft-blue)](https://linkgenetic.github.io/linkid/spec/)
-[![CI](https://github.com/Link-Genetic-GmbH/linkid/actions/workflows/build.yml/badge.svg)](https://github.com/Link-Genetic-GmbH/linkid/actions)
+[![W3C Community Group](https://img.shields.io/badge/W3C-Community%20Group-blue)](https://www.w3.org/community/linkid/)
+[![License: LCL](https://img.shields.io/badge/License-LCL%20v1.0-green)](LICENSE)
 
----
+LinkID is a persistent identifier system that decouples the identity of a hyperlink from the physical address of its target resource. It solves both **Link Rot** (broken links) and **Content Drift** (changed content at same URL).
 
-## 🌍 Overview
+## How It Works
 
-**LinkID** (`linkid:`) is a proposal for a **W3C/IETF standard** to provide *never-break* identifiers on the Web.  
-It complements existing systems (DOI, ARK, Handle) but is designed for general use across documents, websites, and archives.
+Traditional hyperlinks break when URLs change. LinkID assigns each hyperlink relationship a unique, location-independent identifier (LinkID) that remains valid regardless of where the target resource moves or how its content changes.
 
-- Stable IDs even if resources move or change
-- Resolver algorithm with semantic/AI support
-- HTTP-based form (`https://w3id.org/linkid/...`) and optional `linkid:` scheme
-- Open ecosystem: reference resolvers, client SDKs, tests
+```
+Traditional:  Document → URL → Resource (breaks when URL changes)
+LinkID:       Document → LinkID → Resolver → Current Resource (always works)
+```
 
-A Web Incubator CG (WICG) Proposal "Link Genetic Identifier (LINKID) – Persistent, Self-Healing Web Links #238" has been created under https://github.com/WICG/proposals/issues/238.
+## Repository Structure
 
----
+```
+lid/
+├── sdk/              # Client libraries
+│   ├── js/           # JavaScript/TypeScript – npm: @linkgenetic/client
+│   ├── python/       # Python – pip: linkid-client
+│   └── java/         # Java – Maven: org.linkgenetic:linkid-client
+├── spec/             # W3C Specification
+├── draft/            # IETF Internet-Draft (URI scheme)
+├── docs/             # Contributing guidelines, Code of Conduct
+└── tests/            # Conformance tests
+```
 
-## 📖 Explainer
+## Quick Start
 
-We maintain a short, human-readable **[Explainer document](docs/explainer.md)**  
-that introduces the motivation, goals, and design of **LinkID**.  
+### JavaScript / TypeScript
 
-If you are new to this project, start there 👉 it explains **why LinkID matters**  
-and how it complements existing persistent identifier systems like DOI, ARK, or Handle.
+```bash
+npm install @linkgenetic/client
+```
 
----
+```typescript
+import { LinkIdClient } from '@linkgenetic/client';
 
+const client = new LinkIdClient({ resolver: 'https://resolver.linkgenetic.com' });
+const result = await client.resolve('linkid:7e96f229-21c3-4a3d-a6cf-ef7d8dd70f24');
+console.log(result.targetUri); // current location of the resource
+```
 
-## 📄 IANA / IETF Draft
+### Python
 
-The current Internet-Draft for the proposed `linkid:` URI scheme is https://www.iana.org/assignments/uri-schemes/prov/linkid.
-
-Maintained in [`/draft/draft-linkgenetic-linkid-uri-00.md`](draft/draft-linkgenetic-linkid-uri-00.md).
-
-This folder contains Internet-Draft source files for the proposed
-`linkid:` URI scheme.
-
----
-
-# Open-Source Statement – LinkID Persistent Identifier
-
-**Status:** Patent Pending (P220889) • © 2025 Link Genetic GmbH • Switzerland  
-**License:** Apache 2.0 (Open-Source Core)
-
-
-## 🔍 What is LinkID?
-LinkID is a persistent, bidirectional, and AI-resilient hyperlink system that ensures links never break.  
-Each `linkid:` connects a **source** and **target** resource, guaranteeing long-term traceability, auditability, and data integrity.
-
-Learn more on our [Open-Source Initiative Page →](./docs/open-source.md)
-
-
-## 🌍 Mission
-To build an **Unbroken Web** where information remains accessible, trustworthy, and sustainable.
-
-> Stay Unbroken. The Future Is Unbroken and Trustful.
-
-
-## 📜 License
-This repository contains the open-source reference implementation of the LinkID Persistent Identifier.  
-Published under the [Apache License 2.0](https://www.apache.org/licenses/LICENSE-2.0).
-
-
-## 🤝 Contributing
-Contributions are welcome!  
-Please read our [Contribution Guide](./CONTRIBUTING.md) and [Code of Conduct](./CODE_OF_CONDUCT.md).
-
-
----
-
-
-## 📖 Specification
-
-The Editor’s Draft is maintained in [`/spec/index.html`](spec/index.html).
-
-➡️ For a human-friendly introduction, please see the [Explainer](docs/explainer.md).
-
-
----
-
-## 🚀 Implementations
-
-Reference resolvers:
-- [`resolver/java`](resolver/java) — Java-based reference implementation
-- [`resolver/node`](resolver/node) — Node.js prototype
-- [`resolver/python`](resolver/python) — FastAPI prototype
-
-Client SDKs:
-- [`sdk/js`](sdk/js) — JavaScript client
-- [`sdk/java`](sdk/java) — Java client (sample implementation)
-- [`sdk/python`](sdk/python) — Python client (sample implementation)
-
-### Sample client usage
-
-Python (`sdk/python`):
+```bash
+pip install linkid-client
+```
 
 ```python
-# pip install -r sdk/python/requirements.txt
-from sdk.python import LinkIDClient
+from linkid import LinkIdClient
 
-client = LinkIDClient()
-result = client.resolve("b2f6f0d7c7d34e3e8a4f0a6b2a9c9f14", metadata=True)
-
-if hasattr(result, "uri"):
-    print("Redirect to", result.uri)
-else:
-    print("Metadata payload", result.data)
+client = LinkIdClient(resolver="https://resolver.linkgenetic.com")
+result = client.resolve("linkid:7e96f229-21c3-4a3d-a6cf-ef7d8dd70f24")
+print(result.target_uri)  # current location of the resource
 ```
 
-Java (`sdk/java`):
+### Java
+
+```xml
+<dependency>
+    <groupId>org.linkgenetic</groupId>
+    <artifactId>linkid-client</artifactId>
+    <version>1.0.0</version>
+</dependency>
+```
 
 ```java
-// mvn -f sdk/java/pom.xml package
-import org.linkgenetic.linkid.LinkIdClient;
-import org.linkgenetic.linkid.LinkIdClient.ResolveOptions;
-
-LinkIdClient client = LinkIdClient.builder().build();
-LinkIdClient.ResolutionResult result = client.resolve(
-    "b2f6f0d7c7d34e3e8a4f0a6b2a9c9f14",
-    ResolveOptions.builder().metadata(true).build()
-);
-
-switch (result) {
-    case LinkIdClient.RedirectResolution redirect -> System.out.println("Redirect to " + redirect.uri());
-    case LinkIdClient.MetadataResolution metadata -> System.out.println("Metadata: " + metadata.metadata());
-    default -> System.out.println("Unknown result type");
-}
+LinkIdClient client = new LinkIdClient("https://resolver.linkgenetic.com");
+ResolutionResult result = client.resolve("linkid:7e96f229-21c3-4a3d-a6cf-ef7d8dd70f24");
+System.out.println(result.getTargetUri());
 ```
 
+## Use Cases
 
----
+- **Enterprise documents** – Embed LinkIDs in PDF, Word, and other documents. Links survive server migrations, domain changes, and content restructuring.
+- **Web publishing** – Replace fragile URLs with persistent LinkIDs. Readers always reach the current version of referenced content.
+- **Archives and libraries** – Maintain long-term reference integrity with time-aware resolution and archived versions.
+- **QR codes and print media** – LinkIDs in printed materials resolve to current resources even years after publication.
+- **API integrations** – Register and manage LinkIDs programmatically via REST API.
 
-## 🧪 Tests
+## Licensing
 
-Tests live under [`/tests`](tests/).  
-We aim to provide **two independent implementations** and **Web Platform Tests (WPT)** for conformance.
+This project uses a Triple License model:
 
----
+| License | For | Cost |
+|---------|-----|------|
+| **LCL** (Community License) | Non-commercial use, evaluation, research | Free |
+| **LPIL** (Public Interest License) | Universities, libraries, government, NGOs | Free |
+| **LEL** (Enterprise License) | Commercial use | [Contact us](mailto:licensing@linkgenetic.com) |
+
+Client SDK libraries are freely usable under LCL. Server-side implementations of the LinkID system are available under LEL or LPIL.
+
+## Contributing
+
+We welcome contributions! Please read [CONTRIBUTING.md](docs/CONTRIBUTING.md) and sign our Contributor License Agreement (CLA) before submitting pull requests.
+
+Contributions are welcome for:
+- Client SDK libraries (bug fixes, new language bindings)
+- Documentation and translations
+- Conformance tests
+- Specification editorial improvements
+
+## Patent Notice
+
+LinkID technology is protected by patent application CH P220889 and international applications derived therefrom. Use of the client SDK libraries does not require a patent license. For details on patent licensing, see our [licensing page](https://linkgenetic.com/licenses).
+
+## Specifications
+
+- [W3C LinkID Specification](spec/index.html)
+- [IETF Internet-Draft: LinkID URI Scheme](draft/draft-linkgenetic-linkid-uri-00.md)
+
+## Links
+
+- [Link Genetic GmbH](https://linkgenetic.com)
+- [LinkID Resolver](https://resolver.linkgenetic.com)
+- [W3C Community Group](https://www.w3.org/community/linkid/)
