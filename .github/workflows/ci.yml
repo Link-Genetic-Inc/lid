@@ -1,0 +1,98 @@
+name: CI
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  # ── JavaScript SDK ──────────────────────────────────────────────
+  sdk-js:
+    name: JS SDK (Node ${{ matrix.node-version }})
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [18, 20, 22]
+    defaults:
+      run:
+        working-directory: sdk/js
+    steps:
+      - uses: actions/checkout@v4
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: npm
+          cache-dependency-path: sdk/js/package-lock.json
+      - name: Install dependencies
+        run: npm ci
+      - name: Lint
+        run: npm run lint
+      - name: Type check
+        run: npm run type-check
+      - name: Build
+        run: npm run build
+      - name: Test
+        run: npm run test:coverage
+
+  # ── Python SDK ──────────────────────────────────────────────────
+  sdk-python:
+    name: Python SDK (${{ matrix.python-version }})
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: ["3.9", "3.11", "3.12"]
+    defaults:
+      run:
+        working-directory: sdk/python
+    steps:
+      - uses: actions/checkout@v4
+      - name: Set up Python ${{ matrix.python-version }}
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+      - name: Install dependencies
+        run: |
+          pip install --upgrade pip
+          pip install -r requirements.txt
+          pip install pytest pytest-cov black ruff
+      - name: Lint (Ruff)
+        run: ruff check .
+      - name: Format check (Black)
+        run: black --check .
+      - name: Test
+        run: pytest --cov=. --cov-report=xml
+
+  # ── Java SDK ────────────────────────────────────────────────────
+  sdk-java:
+    name: Java SDK (JDK ${{ matrix.java-version }})
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        java-version: [11, 17, 21]
+    defaults:
+      run:
+        working-directory: sdk/java
+    steps:
+      - uses: actions/checkout@v4
+      - name: Set up JDK ${{ matrix.java-version }}
+        uses: actions/setup-java@v4
+        with:
+          java-version: ${{ matrix.java-version }}
+          distribution: temurin
+          cache: maven
+      - name: Build and test
+        run: mvn --batch-mode --update-snapshots verify
+
+  # ── Spec HTML Validation ────────────────────────────────────────
+  spec-validate:
+    name: Spec HTML Validation
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Validate spec/index.html
+        uses: Cyb3r-Jak3/html5validator-action@v7.2.0
+        with:
+          target: spec/index.html
+          css: true
