@@ -138,12 +138,12 @@ Resolution occurs via HTTPS resolvers using the following algorithm:
 1. **Resolver Discovery**: Clients discover resolvers through:
    - Well-known URI: `/.well-known/linkid-resolver`
    - DNS SRV records: `_linkid._https.<domain>`
-   - Default resolver: `https://resolver.linkid.org/`
+   - Default resolver: `https://resolver.linkid.io/`
 
 2. **Resolution Request**: Send HTTPS GET to resolver endpoint:
    ```
    GET /resolve/<id>?<parameters> HTTP/1.1
-   Host: resolver.linkid.org
+   Host: resolver.linkid.io
    Accept: application/linkid+json, text/html, */*
    ```
 
@@ -159,7 +159,7 @@ Clients obtain one or more resolver base URLs using any of the
 following mechanisms (higher items RECOMMENDED first):
 
 1. **Configured/default resolvers**: Implementations SHOULD ship with
-   a curated default resolver list (e.g., `https://resolver.linkid.org/`).
+   a curated default resolver list (e.g., `https://resolver.linkid.io/`).
 2. **Well-known URI**: Fetch `GET /.well-known/linkid-resolver` on a
    resolver origin as per [RFC8615]. The resource returns
    `application/json` describing endpoints. Example:
@@ -282,7 +282,7 @@ Record object fields:
 ```json
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://linkid.org/schemas/linkid-metadata.json",
+  "$id": "https://linkid.io/schemas/linkid-metadata.json",
   "type": "object",
   "required": ["id", "created", "updated", "issuer", "status", "records"],
   "properties": {
