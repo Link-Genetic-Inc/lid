@@ -1,6 +1,6 @@
 [build-system]
 requires = ["setuptools>=68", "wheel"]
-build-backend = "setuptools.backends.legacy:build"
+build-backend = "setuptools.build_meta"
 
 [project]
 name = "linkid-client"
@@ -14,7 +14,7 @@ requires-python = ">=3.9"
 dependencies = ["httpx>=0.25.0"]
 
 [project.optional-dependencies]
-dev = ["pytest>=7.4", "pytest-cov>=4.1", "pytest-asyncio>=0.21", "ruff>=0.1.0", "mypy>=1.5"]
+dev = ["pytest>=7.4", "pytest-cov>=4.1", "ruff>=0.1.0", "mypy>=1.5"]
 
 [project.urls]
 Homepage = "https://linkgenetic.com"
@@ -27,4 +27,11 @@ include = ["linkid*"]
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]
-asyncio_mode = "auto"
+
+[tool.ruff]
+target-version = "py39"
+line-length = 100
+
+[tool.mypy]
+python_version = "3.9"
+strict = true
