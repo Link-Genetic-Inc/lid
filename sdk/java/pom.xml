@@ -5,11 +5,11 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>org.linkgenetic</groupId>
-    <artifactId>linkid-java-sample</artifactId>
+    artifactId>linkid-client</artifactId>
     <version>0.1.0-SNAPSHOT</version>
     <packaging>jar</packaging>
 
-    <name>LinkID Java Sample Client</name>
+    <name>LinkID Java Client SDK</name>
     <description>Sample LinkID client based on project documentation.</description>
 
     <properties>
