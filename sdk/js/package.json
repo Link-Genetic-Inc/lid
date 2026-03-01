@@ -1,16 +1,11 @@
 {
-  "name": "@linkid/client",
+  "name": "@linkgenetic/client",
   "version": "1.0.0",
   "description": "JavaScript client SDK for LinkID persistent identifiers",
   "main": "dist/index.js",
   "module": "dist/index.esm.js",
   "types": "dist/index.d.ts",
-  "files": [
-    "dist/",
-    "src/",
-    "README.md",
-    "LICENSE"
-  ],
+  "files": ["dist/", "src/", "README.md", "LICENSE"],
   "scripts": {
     "build": "rollup -c",
     "build:watch": "rollup -c -w",
@@ -23,27 +18,17 @@
     "docs": "typedoc src/index.ts",
     "prepublishOnly": "npm run build && npm test"
   },
-  "keywords": [
-    "linkid",
-    "persistent-identifier",
-    "web",
-    "resolver",
-    "client",
-    "sdk"
-  ],
+  "keywords": ["linkid", "persistent-identifier", "web", "resolver", "client", "sdk"],
   "author": "Link Genetic GmbH <info@linkgenetic.com>",
-  "license": "MIT",
+  "license": "LCL-1.0",
   "repository": {
     "type": "git",
-    "url": "https://github.com/linkgenetic/linkid-client-js.git"
+    "url": "https://github.com/Link-Genetic-Inc/lid.git",
+    "directory": "sdk/js"
   },
-  "bugs": {
-    "url": "https://github.com/linkgenetic/linkid-client-js/issues"
-  },
-  "homepage": "https://linkid.org",
-  "dependencies": {
-    "cross-fetch": "^4.0.0"
-  },
+  "bugs": { "url": "https://github.com/Link-Genetic-Inc/lid/issues" },
+  "homepage": "https://linkgenetic.com",
+  "dependencies": { "cross-fetch": "^4.0.0" },
   "devDependencies": {
     "@rollup/plugin-commonjs": "^25.0.4",
     "@rollup/plugin-node-resolve": "^15.2.1",
@@ -61,20 +46,8 @@
     "typedoc": "^0.24.8",
     "typescript": "^5.1.6"
   },
-  "peerDependencies": {
-    "node-fetch": "^3.0.0"
-  },
-  "peerDependenciesMeta": {
-    "node-fetch": {
-      "optional": true
-    }
-  },
-  "engines": {
-    "node": ">=16.0.0"
-  },
-  "browserslist": [
-    "> 1%",
-    "last 2 versions",
-    "not dead"
-  ]
+  "peerDependencies": { "node-fetch": "^3.0.0" },
+  "peerDependenciesMeta": { "node-fetch": { "optional": true } },
+  "engines": { "node": ">=18.0.0" },
+  "browserslist": ["> 1%", "last 2 versions", "not dead"]
 }
