@@ -14,35 +14,7 @@ requires-python = ">=3.9"
 dependencies = ["httpx>=0.25.0"]
 
 [project.optional-dependencies]
-dev = ["pytest>=7.4", "pytest-cov>=4.1", "ruff>=0.1.0", "mypy>=1.5"]
-
-[project.urls]
-Homepage = "https://linkgenetic.com"
-Repository = "https://github.com/Link-Genetic-Inc/lid"
-"Bug Tracker" = "https://github.com/Link-Genetic-Inc/lid/issues"
-
-[tool.setuptools.packages.find]
-where = ["."]
-include = ["linkid*"]
-
-[tool.pytest.ini_options]
-testpat[hbsu i=l d[-"styessttesm"]]
-requires = ["setuptools>=68", "wheel"]
-build-backend = "setuptools.backends.legacy:build"
-
-[project]
-name = "linkid-client"
-version = "1.0.0"
-description = "Python client SDK for LinkID persistent identifiers"
-readme = "README.md"
-license = { text = "LCL-1.0" }
-authors = [{ name = "Link Genetic GmbH", email = "info@linkgenetic.com" }]
-keywords = ["linkid", "persistent-identifier", "resolver", "sdk"]
-requires-python = ">=3.9"
-dependencies = ["httpx>=0.25.0"]
-
-[project.optional-dependencies]
-dev = ["pytest>=7.4", "pytest-cov>=4.1", "ruff>=0.1.0", "mypy>=1.5"]
+dev = ["pytest>=7.4", "pytest-cov>=4.1", "pytest-asyncio>=0.21", "ruff>=0.1.0", "mypy>=1.5"]
 
 [project.urls]
 Homepage = "https://linkgenetic.com"
@@ -55,3 +27,4 @@ include = ["linkid*"]
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]
+asyncio_mode = "auto"
