@@ -10,7 +10,7 @@
  * import { LinkIDClient } from '@linkid/client';
  *
  * const client = new LinkIDClient({
- *   resolverUrl: 'https://resolver.linkid.org',
+ *   resolverUrl: 'https://resolver.linkid.io',
  *   apiKey: 'your-api-key'
  * });
  *
@@ -30,14 +30,17 @@
  * @license MIT
  */
 
+
 // Import polyfill for fetch in Node.js environments
 import 'cross-fetch/polyfill';
+
 
 export * from './types';
 export * from './client';
 export * from './cache';
 export * from './discovery';
 export * from './errors';
+
 
 // Default export
 export { LinkIDClient as default } from './client';
