@@ -1,0 +1,76 @@
+name: Integration Tests
+
+on:
+  schedule:
+    - cron: '0 6 * * *'
+  workflow_dispatch:
+    inputs:
+      resolver_url:
+        description: 'Resolver URL to test against'
+        required: false
+        default: 'https://resolver.linkgenetic.com'
+
+env:
+  RESOLVER_URL: ${{ github.event.inputs.resolver_url || 'https://resolver.linkgenetic.com' }}
+
+jobs:
+  integration-js:
+    name: JS Integration Tests
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: sdk/js
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+          cache-dependency-path: sdk/js/package-lock.json
+      - run: npm ci
+      - name: Run integration tests
+        run: npm run test:integration
+        env:
+          LINKID_RESOLVER: ${{ env.RESOLVER_URL }}
+          LINKID_TEST_ID: linkid:7e96f229-21c3-4a3d-a6cf-ef7d8dd70f24
+
+  integration-python:
+    name: Python Integration Tests
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: sdk/python
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install
+        run: |
+          pip install --upgrade pip
+          pip install -e .
+          pip install pytest pytest-asyncio
+      - name: Run integration tests
+        run: pytest tests/ -m integration -v
+        env:
+          LINKID_RESOLVER: ${{ env.RESOLVER_URL }}
+          LINKID_TEST_ID: linkid:7e96f229-21c3-4a3d-a6cf-ef7d8dd70f24
+
+  integration-java:
+    name: Java Integration Tests
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: sdk/java
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-java@v4
+        with:
+          java-version: 17
+          distribution: temurin
+          cache: maven
+      - name: Run integration tests
+        run: mvn --batch-mode test -Dtest=*IntegrationTest
+        env:
+          LINKID_RESOLVER: ${{ env.RESOLVER_URL }}
+          LINKID_TEST_ID: linkid:7e96f229-21c3-4a3d-a6cf-ef7d8dd70f24
