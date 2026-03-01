@@ -30,7 +30,7 @@
   "homepage": "https://linkgenetic.com",
   "dependencies": { "cross-fetch": "^4.0.0" },
   "devDependencies": {
-    "@rollup/plugin-commonjs": "^25.0.4",
+    "@rollup/plugin-commonjs": "^29.0.0",
     "@rollup/plugin-node-resolve": "^15.2.1",
     "@rollup/plugin-typescript": "^11.1.2",
     "@types/jest": "^29.5.4",
