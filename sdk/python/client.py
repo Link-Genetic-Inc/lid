@@ -19,14 +19,11 @@ from __future__ import annotations
 import re
 import time
 from dataclasses import dataclass, replace
-from typing import Any, Dict, Optional, Tuple, Union
+from typing import Any, Dict, Optional, Union
 
 
 
 
-import requests
-from requests import Response, Session
-from requests.exceptions import RequestException, Timeout
 
 
 
@@ -100,12 +97,6 @@ class LinkIDWithdrawnError(LinkIDError):
         self.link_id = link_id
         self.tombstone = tombstone or {}
 
-
-
-
-
-
-h
 
 @dataclass
 class RedirectResolution:
