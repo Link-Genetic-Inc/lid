@@ -603,7 +603,7 @@ public final class LinkIdClient {
     }
 
     public static final class Builder {
-        private URI resolverUri = URI.create("https://resolver.linkid.org");
+        private URI resolverUri = URI.create("https://resolver.linkid.io");
         private String apiKey;
         private Duration timeout = Duration.ofSeconds(10);
         private int retries = 3;
