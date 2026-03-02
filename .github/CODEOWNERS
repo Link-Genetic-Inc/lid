@@ -1,0 +1,20 @@
+# CODEOWNERS
+# Auto-requests review from the right people for each changed path.
+# https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/about-code-owners
+
+# Default: maintainers review everything
+*                            @Link-Genetic-Inc
+
+# Legal & governance — always requires maintainer sign-off
+/LICENSE                     @Link-Genetic-Inc
+/.github/CLA.md              @Link-Genetic-Inc
+/GOVERNANCE.md               @Link-Genetic-Inc
+/SECURITY.md                 @Link-Genetic-Inc
+
+# Specification (extra scrutiny — affects standards body)
+/spec/                       @Link-Genetic-Inc
+/draft/                      @Link-Genetic-Inc
+
+# CI/CD (protect from unintended changes)
+/.github/workflows/          @Link-Genetic-Inc
+/.github/dependabot.yml      @Link-Genetic-Inc
