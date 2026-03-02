@@ -3,6 +3,7 @@
 [![W3C Community Group](https://img.shields.io/badge/W3C-Community%20Group-blue)](https://www.w3.org/community/linkid/)
 [![IANA URI Scheme](https://img.shields.io/badge/IANA-linkid%3A%20URI%20Scheme-orange)](https://www.iana.org/assignments/uri-schemes/prov/linkid)
 [![License: LCL](https://img.shields.io/badge/License-LCL%20v1.0-green)](LICENSE)
+[![CI](https://github.com/Link-Genetic-Inc/lid/actions/workflows/ci.yml/badge.svg)](https://github.com/Link-Genetic-Inc/lid/actions/workflows/ci.yml)
 
 LinkID is a persistent identifier system that decouples the identity of a hyperlink from the physical address of its target resource. It solves both **Link Rot** (broken links) and **Content Drift** (changed content at same URL).
 
@@ -38,11 +39,11 @@ npm install @linkgenetic/client
 ```
 
 ```typescript
-import { LinkIdClient } from '@linkgenetic/client';
+import { LinkIDClient } from '@linkgenetic/client';
 
-const client = new LinkIdClient({ resolver: 'https://resolver.linkgenetic.com' });
+const client = new LinkIDClient({ resolverUrl: 'https://resolver.linkgenetic.com' });
 const result = await client.resolve('linkid:7e96f229-21c3-4a3d-a6cf-ef7d8dd70f24');
-console.log(result.targetUri); // current location of the resource
+console.log(result.uri); // current location of the resource
 ```
 
 ### Python
