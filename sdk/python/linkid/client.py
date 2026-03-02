@@ -1,3 +1,6 @@
+# SPDX-License-Identifier: LicenseRef-LCL-1.0
+# SPDX-FileCopyrightText: 2025-2026 Link Genetic GmbH <info@linkgenetic.com>
+
 """LinkID client for Python.
 
 This module provides the main client class for interacting with a LinkID
