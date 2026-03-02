@@ -1,8 +1,5 @@
 # GitHub Sponsors and funding configuration
 # https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/displaying-a-sponsor-button-in-your-repository
 
-# No GitHub Sponsors or Open Collective at this time.
-# For enterprise licensing and commercial support, contact:
-# https://linkgenetic.com/licenses/enterprise
 custom:
-  - https://linkgenetic.com/licenses/enterprise
+  - https://linkgenetic.com/about/sponsoring
