@@ -1,20 +1,41 @@
 ---
 name: Feature request
-about: Suggest an idea for this project
-title: ''
-labels: ''
+about: Suggest an improvement or new feature
+title: '[FEATURE] '
+labels: 'enhancement, needs-triage'
 assignees: ''
-
 ---
 
-**Is your feature request related to a problem? Please describe.**
-A clear and concise description of what the problem is. Ex. I'm always frustrated when [...]
+## Summary
 
-**Describe the solution you'd like**
-A clear and concise description of what you want to happen.
+<!-- One sentence: what and why? -->
 
-**Describe alternatives you've considered**
-A clear and concise description of any alternative solutions or features you've considered.
+## Component
 
-**Additional context**
-Add any other context or screenshots about the feature request here.
+- [ ] JavaScript / TypeScript SDK
+- [ ] Python SDK
+- [ ] Java SDK
+- [ ] New SDK language (specify: ___)
+- [ ] W3C Specification
+- [ ] IETF Internet-Draft
+- [ ] CI / Tooling / Docs
+
+## Problem & Motivation
+
+<!-- What problem does this solve? Who benefits? -->
+
+## Proposed Solution
+
+```typescript
+// API sketch if applicable
+```
+
+## Alternatives Considered
+
+## Specification Impact
+
+- [ ] Requires a spec change
+- [ ] Implementation detail only
+- [ ] Unsure
+
+## Additional Context

@@ -1,38 +1,49 @@
 ---
 name: Bug report
-about: Create a report to help us improve
-title: ''
-labels: ''
+about: Report a bug in the LinkID SDKs or specification
+title: '[BUG] '
+labels: 'bug, needs-triage'
 assignees: ''
-
 ---
 
-**Describe the bug**
-A clear and concise description of what the bug is.
+## Component
 
-**To Reproduce**
-Steps to reproduce the behavior:
-1. Go to '...'
-2. Click on '....'
-3. Scroll down to '....'
-4. See error
+- [ ] JavaScript / TypeScript SDK (`sdk/js`)
+- [ ] Python SDK (`sdk/python`)
+- [ ] Java SDK (`sdk/java`)
+- [ ] W3C Specification (`spec/`)
+- [ ] IETF Internet-Draft (`draft/`)
+- [ ] CI / Tooling
+- [ ] Other
 
-**Expected behavior**
-A clear and concise description of what you expected to happen.
+## Bug Description
 
-**Screenshots**
-If applicable, add screenshots to help explain your problem.
+<!-- Clear, concise description of the bug. -->
 
-**Desktop (please complete the following information):**
- - OS: [e.g. iOS]
- - Browser [e.g. chrome, safari]
- - Version [e.g. 22]
+## Steps to Reproduce
 
-**Smartphone (please complete the following information):**
- - Device: [e.g. iPhone6]
- - OS: [e.g. iOS8.1]
- - Browser [e.g. stock browser, safari]
- - Version [e.g. 22]
+1.
+2.
+3.
 
-**Additional context**
-Add any other context about the problem here.
+## Expected Behavior
+
+## Actual Behavior
+
+<!-- Include error messages and stack traces. -->
+
+## Minimal Code Example
+
+```typescript
+// Replace with your language
+```
+
+## Environment
+
+| | |
+|---|---|
+| SDK version | e.g. `1.0.0` |
+| Runtime | e.g. Node.js 20 / Python 3.11 / JDK 17 |
+| OS | e.g. Ubuntu 22.04 |
+
+## Additional Context

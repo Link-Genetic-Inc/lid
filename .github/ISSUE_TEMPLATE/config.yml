@@ -1,0 +1,11 @@
+blank_issues_enabled: false
+contact_links:
+  - name: "🐛 Bug report"
+    url: https://github.com/Link-Genetic-Inc/lid/issues/new?template=bug_report.md
+    about: Report a bug in the SDKs or specification
+  - name: "💡 Feature request"
+    url: https://github.com/Link-Genetic-Inc/lid/issues/new?template=feature_request.md
+    about: Suggest a new feature or improvement
+  - name: "📧 General contact"
+    url: https://linkgenetic.com/contact
+    about: Business enquiries, licensing, or partnership
