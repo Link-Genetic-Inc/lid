@@ -14,9 +14,9 @@ npm install @linkgenetic/client
 ## Usage
 
 ```typescript
-import { LinkIdClient } from '@linkgenetic/client';
+import { LinkIDClient } from '@linkgenetic/client';
 
-const client = new LinkIdClient({ resolver: 'https://resolver.linkgenetic.com' });
+const client = new LinkIDClient({ resolverUrl: 'https://resolver.linkgenetic.com' });
 const result = await client.resolve('linkid:7e96f229-21c3-4a3d-a6cf-ef7d8dd70f24');
 console.log(result.targetUri);
 ```
