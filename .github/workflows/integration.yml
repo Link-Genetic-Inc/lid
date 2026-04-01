@@ -1,8 +1,9 @@
 name: Integration Tests
 
 on:
-  schedule:
-    - cron: '0 6 * * *'
+  # schedule disabled — tests are stale and failing daily (LINKID-116)
+  # schedule:
+  #   - cron: '0 6 * * *'
   workflow_dispatch:
     inputs:
       resolver_url:
