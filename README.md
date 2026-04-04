@@ -85,6 +85,8 @@ System.out.println(result.getTargetUri());
 - **API integrations** – Register and manage LinkIDs programmatically via REST API.
 - **Wikipedia & Wikimedia** – Persistent reference identifiers for Wikipedia citations, solving link rot and content drift at scale. See [Wikimedia Hackathon 2026](Wikimedia%20Hackathon%202026/README.md) for detailed use cases.
 
+See [`docs/use-cases/`](docs/use-cases/README.md) for the full use case library covering LinkID, LinkManager, and combined deployments across Academia, Libraries, and Government.
+
 ## Licensing
 
 This project uses a Triple License model:
