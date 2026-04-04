@@ -1,0 +1,64 @@
+== Improving Wikipedia Reference Integrity with Persistent LinkIDs ==
+
+{| class="wikitable"
+|-
+! Field !! Value
+|-
+| '''Type''' || Working session + demo
+|-
+| '''Presenter''' || Christian Nyffenegger ([[User:ChristianN-LinkGenetic|ChristianN-LinkGenetic]])
+|-
+| '''Phabricator''' || [[phab:T422252]]
+|-
+| '''Duration''' || 90 min (60 min working session + 30 min demo / open discussion)
+|-
+| '''Skill level''' || All welcome — no prior knowledge required
+|-
+| '''Looking for''' || MediaWiki/Lua developers · Bot operators · Wikidata contributors · Policy/governance discussants
+|}
+
+=== What is this about? ===
+
+Wikipedia's references are its epistemic backbone — yet tens of millions of them are broken or silently misleading due to '''link rot''' (dead URLs) and '''content drift''' (URLs that resolve but whose content has changed). Current mitigations are reactive and incomplete.
+
+This session introduces '''LinkID''', a persistent identifier system that gives every Wikipedia citation a stable, location-independent identity — decoupled from the physical URL. If the URL breaks or moves, the LinkID resolver automatically falls back to a redirect or an archived snapshot. If the content changes, the resolver raises an alert.
+
+<code>linkid:7e96f229-21c3-4a3d-a6cf-ef7d8dd70f24</code> → always resolves, even when the original URL does not.
+
+=== What will we work on? ===
+
+The session has two parts:
+
+'''1. Hands-on hacking (60 min)'''
+
+* Prototype a <code>|linkid=</code> parameter for the <code>{{cite web}}</code> template on a MediaWiki sandbox
+* Wire up the LinkID resolver API to the template renderer
+* Sketch a bot-assisted migration design for existing citations
+* Explore a Wikidata property proposal for <code>P_linkid</code>
+
+'''2. Demo + open discussion (30 min)'''
+
+* Live demo: link rot detection with automatic archival fallback
+* Community questions: governance, deployment model, data sovereignty, integration with InternetArchiveBot and Citoid
+* How can this be governed and hosted by WMF, fully on WMF infrastructure?
+
+=== Who should join? ===
+
+* '''MediaWiki / Lua / PHP developers''' — help prototype the <code>{{cite web}}</code> integration
+* '''Bot operators''' — discuss migration bot design and InternetArchiveBot integration
+* '''Wikidata contributors''' — explore the <code>P_linkid</code> property proposal
+* '''Anyone interested in reference quality''' — come to the demo, ask hard questions
+
+=== Resources ===
+
+* GitHub (specs, SDKs, use cases): https://github.com/Link-Genetic-Inc/lid
+* Detailed use cases: https://github.com/Link-Genetic-Inc/lid/tree/main/docs/use-cases/wikimedia
+* Short demo (3 min): https://www.loom.com/share/614350752f0d426ca943db03b4aea24b
+* W3C Community Group: https://www.w3.org/community/linkid/
+* Live resolver: https://resolver.linkgenetic.com
+
+=== A note on governance ===
+
+LinkID can be deployed '''fully on WMF infrastructure''', with no dependency on external services.
+It is available under the LPIL (Public Interest License) — free for Wikimedia, libraries, universities, and government.
+This is not a product pitch. The goal is to design, together with the community, what a trustworthy and open reference persistence layer for Wikipedia should look like.
