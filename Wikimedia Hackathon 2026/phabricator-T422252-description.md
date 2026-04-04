@@ -5,7 +5,7 @@
 **Presenter**: Christian Nyffenegger (Link Genetic GmbH)  
 **Contact**: hackathon@linkgenetic.com  
 **Demo**: https://www.loom.com/share/614350752f0d426ca943db03b4aea24b  
-**Use Cases**: https://github.com/Link-Genetic-Inc/lid/tree/main/docs/use-cases/wikimedia
+**Use Cases**: https://github.com/Link-Genetic-Inc/lid/tree/main/Wikimedia%20Hackathon%202026
 
 ---
 
@@ -79,7 +79,7 @@ No prior knowledge of LinkID is required. The use cases folder in the repo provi
 ## Resources
 
 - **GitHub** (specs, SDKs, use cases): https://github.com/Link-Genetic-Inc/lid
-- **Wikimedia use cases**: https://github.com/Link-Genetic-Inc/lid/tree/main/docs/use-cases/wikimedia
+- **Wikimedia use cases**: https://github.com/Link-Genetic-Inc/lid/tree/main/Wikimedia%20Hackathon%202026
 - **W3C Community Group**: https://www.w3.org/community/linkid/
 - **Loom demo**: https://www.loom.com/share/614350752f0d426ca943db03b4aea24b
 - **Resolver** (live): https://resolver.linkgenetic.com
