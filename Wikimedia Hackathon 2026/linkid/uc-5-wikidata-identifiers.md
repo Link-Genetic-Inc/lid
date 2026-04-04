@@ -1,6 +1,7 @@
 # UC-5 · Persistent Reference Identifiers in Wikidata
 
-**Category**: Structured Data / Wikidata  
+**Product**: LinkID  
+**Problems**: Link Rot · Content Drift  
 **Priority**: Medium  
 **Hackathon Demo**: 🔲 Discussion topic
 
@@ -79,5 +80,5 @@ A companion service could annotate SPARQL results with resolver status — enabl
 
 ## Related
 
-- [UC-1 · Link Rot Detection & Automated Healing](./uc-1-link-rot-detection.md)
-- [UC-2 · Content Drift Alerting](./uc-2-content-drift-alerting.md)
+- [UC-1 · Link Rot Detection & Automated Healing](../linkmanager/uc-1-link-rot-detection.md)
+- [UC-2 · Content Drift Alerting](../linkmanager/uc-2-content-drift-alerting.md)

@@ -1,6 +1,7 @@
 # UC-4 · Reference Archival at Citation Time
 
-**Category**: Archival / Long-Term Preservation  
+**Product**: LinkID  
+**Problems**: Link Rot · Content Drift  
 **Priority**: Medium  
 **Hackathon Demo**: 🔲 Stretch goal
 
@@ -98,6 +99,6 @@ This satisfies the **data sovereignty** requirements discussed with Wikimedia CH
 
 ## Related
 
-- [UC-1 · Link Rot Detection & Automated Healing](./uc-1-link-rot-detection.md)
-- [UC-2 · Content Drift Alerting](./uc-2-content-drift-alerting.md)
+- [UC-1 · Link Rot Detection & Automated Healing](../linkmanager/uc-1-link-rot-detection.md)
+- [UC-2 · Content Drift Alerting](../linkmanager/uc-2-content-drift-alerting.md)
 - [UC-3 · `{{cite web}}` Template Integration](./uc-3-cite-web-template.md)

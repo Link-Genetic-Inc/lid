@@ -1,6 +1,7 @@
 # UC-2 · Content Drift Alerting for Existing Citations
 
-**Category**: Reference Integrity  
+**Product**: LinkManager  
+**Problem**: Content Drift  
 **Priority**: High  
 **Hackathon Demo**: 🔲 Stretch goal
 
@@ -24,30 +25,47 @@ The citation is silently misleading.
 
 ---
 
-## Solution with LinkID
+## Solution with LinkManager
 
-When a LinkID is registered, the resolver stores a **content fingerprint** (hash of the canonical text content) of the resource at registration time. Periodically, the resolver re-fetches the resource and compares:
+LinkManager monitors not just the *availability* of cited URLs, but also their *content*. When a URL inside a Wikipedia article still resolves but its content has changed significantly, LinkManager raises an alert.
 
-- **Hash match**: content unchanged — no action
-- **Minor diff** (< threshold): flagged as "potentially updated" — logged
-- **Major diff** (> threshold): flagged as "content drift detected" — alert generated
-- **Semantic drift** (optional, AI-assisted): meaning has changed relative to the original claim
+### How Drift is Detected
 
-Editors and bots can query the resolver for drift alerts and decide whether to update, revert, or archive the citation.
+When LinkManager first indexes a cited URL, it stores a **content fingerprint** (hash of the canonical text content). On each subsequent crawl, it re-fetches the resource and computes a **drift score**:
+
+| Drift Score | Status | Action |
+|-------------|--------|--------|
+| < 0.2 | Content unchanged | No action |
+| 0.2 – 0.6 | Minor update | Logged; available via dashboard |
+| > 0.6 | **DRIFT\_DETECTED** | Alert generated; article flagged |
 
 ```
-GET /api/v1/resolve/7e96f229-21c3-4a3d-a6cf-ef7d8dd70f24/status
+URL: https://health-institute.org/report/obesity-rates  →  STATUS: 200 OK
 
-{
-  "linkid": "linkid:7e96f229-...",
-  "status": "DRIFT_DETECTED",
-  "original_hash": "sha256:a3f9...",
-  "current_hash":  "sha256:b72c...",
-  "drift_score": 0.83,
-  "registered_at": "2019-04-12T10:30:00Z",
-  "checked_at":    "2026-03-01T08:00:00Z",
-  "archived_url":  "https://web.archive.org/web/20190412/..."
-}
+LinkManager drift check:
+  original_hash: sha256:a3f9...  (indexed 2019-04-12)
+  current_hash:  sha256:b72c...  (checked 2026-03-01)
+  drift_score:   0.83
+  status:        DRIFT_DETECTED
+  action:        {{citation needs review}} tag added to article
+```
+
+### Drift Alert API
+
+Maintenance bots and editors can query LinkManager's drift alerts programmatically:
+
+```
+GET /api/v1/articles/{article}/citations/drift-alerts
+
+[
+  {
+    "url": "https://health-institute.org/report/obesity-rates",
+    "drift_score": 0.83,
+    "first_indexed": "2019-04-12",
+    "last_checked": "2026-03-01",
+    "archived_url": "https://web.archive.org/web/20190412/..."
+  }
+]
 ```
 
 ---
@@ -56,9 +74,9 @@ GET /api/v1/resolve/7e96f229-21c3-4a3d-a6cf-ef7d8dd70f24/status
 
 | Actor | Role |
 |-------|------|
-| LinkID Resolver | Monitors registered resources, computes drift scores |
-| Wikipedia Maintenance Bot | Queries resolver for drift alerts, tags affected articles |
-| Wikipedia Editor | Reviews flagged citations and decides on corrective action |
+| LinkManager | Monitors content at all cited URLs in Wikipedia articles; computes drift scores |
+| Wikipedia Maintenance Bot | Queries LinkManager drift API; tags affected articles |
+| Wikipedia Editor | Reviews flagged citations; decides whether to update, revert, or archive |
 | Reader | May see a "citation health" indicator on the reference |
 
 ---
@@ -66,38 +84,52 @@ GET /api/v1/resolve/7e96f229-21c3-4a3d-a6cf-ef7d8dd70f24/status
 ## Flow
 
 ```
-1. URL registered at citation time (see UC-1)
-2. Resolver re-checks URL on schedule (e.g. monthly)
-3. Drift score computed:
+1. LinkManager indexes cited URL → stores content fingerprint
+2. Scheduled re-crawl (e.g. monthly):
+   a. URL re-fetched → new content hash computed
+   b. Drift score calculated
+3. Drift score thresholds applied:
    a. score < 0.2 → no action
-   b. score 0.2–0.6 → logged, available via API
-   c. score > 0.6 → "DRIFT_DETECTED" status set
+   b. score 0.2–0.6 → logged in dashboard
+   c. score > 0.6 → DRIFT_DETECTED status set
 4. Maintenance bot queries /api/drift-alerts
-5. Bot adds {{citation needs review}} tag to affected Wikipedia articles
-6. Editors review and update citations as needed
+5. Bot adds {{citation needs review}} to affected Wikipedia articles
+6. Editor reviews:
+   a. Source still valid → dismiss alert
+   b. Source has drifted → update citation or substitute archive URL
 ```
 
 ---
 
 ## Benefits
 
-- Surfaces a class of reference failure that is currently invisible
+- Surfaces a class of reference failure that is currently invisible to all existing tools
 - Enables proactive reference maintenance rather than reader-reported errors
-- Drift score API is open — third-party tools and bots can build on it
+- Drift alert API is open — third-party tools and bots can build on it
 - Archived snapshots serve as ground truth for what the source said at citation time
+
+---
+
+## Relationship to LinkID (UC-4)
+
+LinkManager detects content drift in existing cited URLs **reactively**. LinkID (UC-4) prevents drift **structurally** — by anchoring a `linkid:` identifier to the specific content snapshot at citation time. If the content at the URL changes, the LinkID resolver can surface this and always return the original version.
+
+- **LinkManager**: monitors existing URLs in Wikipedia articles; alerts on drift
+- **LinkID**: anchors new citations to a specific content version; drift is surfaced via resolver status
 
 ---
 
 ## Open Questions for Hackathon
 
 - What threshold defines "significant" content drift in the context of Wikipedia citations?
-- Should drift detection be purely syntactic (hash/diff) or include semantic analysis?
-- Who receives drift alerts — the original editor, the article watchlist, a dedicated maintenance project?
-- Privacy: does storing content hashes of external resources raise any policy concerns for WMF?
+- Should drift detection be purely syntactic (hash/diff) or include semantic analysis (AI-assisted)?
+- Who receives drift alerts — the original editor, the article watchlist, or a dedicated maintenance project?
+- Does storing content fingerprints of external resources raise policy concerns for WMF?
 
 ---
 
 ## Related
 
 - [UC-1 · Link Rot Detection & Automated Healing](./uc-1-link-rot-detection.md)
-- [UC-4 · Reference Archival at Citation Time](./uc-4-reference-archival.md)
+- [UC-6 · Bot-Assisted Migration](./uc-6-bot-assisted-migration.md)
+- [UC-4 · Reference Archival at Citation Time](../linkid/uc-4-reference-archival.md)

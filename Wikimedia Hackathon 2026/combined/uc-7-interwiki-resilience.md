@@ -1,6 +1,7 @@
 # UC-7 · Cross-Wiki and Interwiki Reference Resilience
 
-**Category**: Multi-language / Cross-Wiki  
+**Products**: LinkManager + LinkID (Combined)  
+**Problems**: Link Rot · Content Drift  
 **Priority**: Low–Medium  
 **Hackathon Demo**: 🔲 Discussion topic
 
@@ -72,5 +73,5 @@ A secondary benefit: if two language editions independently cite the same source
 
 ## Related
 
-- [UC-5 · Persistent Reference Identifiers in Wikidata](./uc-5-wikidata-identifiers.md)
-- [UC-3 · `{{cite web}}` Template Integration](./uc-3-cite-web-template.md)
+- [UC-5 · Persistent Reference Identifiers in Wikidata](../linkid/uc-5-wikidata-identifiers.md)
+- [UC-3 · `{{cite web}}` Template Integration](../linkid/uc-3-cite-web-template.md)

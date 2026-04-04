@@ -1,6 +1,7 @@
 # UC-3 · LinkID Integration in the `{{cite web}}` Template
 
-**Category**: Editor Tooling / MediaWiki Integration  
+**Product**: LinkID  
+**Problems**: Link Rot · Content Drift  
 **Priority**: High  
 **Hackathon Demo**: ✅ Planned
 
@@ -106,6 +107,6 @@ No changes to existing templates are required for the demo — the module can be
 
 ## Related
 
-- [UC-1 · Link Rot Detection & Automated Healing](./uc-1-link-rot-detection.md)
+- [UC-1 · Link Rot Detection & Automated Healing](../linkmanager/uc-1-link-rot-detection.md)
 - [UC-4 · Reference Archival at Citation Time](./uc-4-reference-archival.md)
-- [UC-6 · Bot-Assisted Migration of Legacy References](./uc-6-bot-assisted-migration.md)
+- [UC-6 · Bot-Assisted Migration of Legacy References](../linkmanager/uc-6-bot-assisted-migration.md)
