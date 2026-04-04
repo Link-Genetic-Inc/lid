@@ -4,7 +4,7 @@
 **Type**: Project / Working Session + Demo  
 **Presenter**: Christian Nyffenegger (Link Genetic GmbH)  
 **Contact**: hackathon@linkgenetic.com  
-**Demo**: https://www.loom.com/share/614350752f0d426ca943db03b4aea24b  
+**Demo**: https://linkmanager.linkgenetic.com/integrations/wikipedia (LinkManager × Wikipedia integration) · [Loom walkthrough](https://www.loom.com/share/614350752f0d426ca943db03b4aea24b)  
 **Use Cases**: https://github.com/Link-Genetic-Inc/lid/tree/main/Wikimedia%20Hackathon%202026
 
 ---
@@ -81,7 +81,8 @@ No prior knowledge of LinkID is required. The use cases folder in the repo provi
 - **GitHub** (specs, SDKs, use cases): https://github.com/Link-Genetic-Inc/lid
 - **Wikimedia use cases**: https://github.com/Link-Genetic-Inc/lid/tree/main/Wikimedia%20Hackathon%202026
 - **W3C Community Group**: https://www.w3.org/community/linkid/
-- **Loom demo**: https://www.loom.com/share/614350752f0d426ca943db03b4aea24b
+- **Demo** (LinkManager × Wikipedia): https://linkmanager.linkgenetic.com/integrations/wikipedia
+- **Loom walkthrough**: https://www.loom.com/share/614350752f0d426ca943db03b4aea24b
 - **Resolver** (live): https://resolver.linkgenetic.com
 - **JS SDK**: `npm install @linkgenetic/client`
 - **Python SDK**: `pip install linkid-client`

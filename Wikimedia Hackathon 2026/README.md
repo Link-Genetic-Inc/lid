@@ -49,7 +49,7 @@ During the Wikimedia Hackathon 2026, the focus will be on:
 
 - Hackathon task: [phabricator.wikimedia.org/T422252](https://phabricator.wikimedia.org/T422252)
 - Project: [github.com/Link-Genetic-Inc/lid](https://github.com/Link-Genetic-Inc/lid)
-- Demo: [loom.com/share/614350752f0d426ca943db03b4aea24b](https://www.loom.com/share/614350752f0d426ca943db03b4aea24b)
+- Demo: [LinkManager × Wikipedia integration](https://linkmanager.linkgenetic.com/integrations/wikipedia) · [Loom walkthrough](https://www.loom.com/share/614350752f0d426ca943db03b4aea24b)
 - Contact: Christian Nyffenegger · [linkgenetic.com](https://linkgenetic.com)
 
 Contributions, questions, and counter-proposals are welcome — open an issue or join the `#wmhack` channel during the hackathon.

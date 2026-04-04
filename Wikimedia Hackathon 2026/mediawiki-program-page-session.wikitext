@@ -53,7 +53,8 @@ The session has two parts:
 
 * GitHub (specs, SDKs, use cases): https://github.com/Link-Genetic-Inc/lid
 * Detailed use cases: https://github.com/Link-Genetic-Inc/lid/tree/main/docs/use-cases/wikimedia
-* Short demo (3 min): https://www.loom.com/share/614350752f0d426ca943db03b4aea24b
+* Live demo (LinkManager × Wikipedia): https://linkmanager.linkgenetic.com/integrations/wikipedia
+* Loom walkthrough: https://www.loom.com/share/614350752f0d426ca943db03b4aea24b
 * W3C Community Group: https://www.w3.org/community/linkid/
 * Live resolver: https://resolver.linkgenetic.com
 
