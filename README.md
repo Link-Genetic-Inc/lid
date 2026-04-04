@@ -83,6 +83,7 @@ System.out.println(result.getTargetUri());
 - **Archives and libraries** – Maintain long-term reference integrity with time-aware resolution and archived versions.
 - **QR codes and print media** – LinkIDs in printed materials resolve to current resources even years after publication.
 - **API integrations** – Register and manage LinkIDs programmatically via REST API.
+- **Wikipedia & Wikimedia** – Persistent reference identifiers for Wikipedia citations, solving link rot and content drift at scale. See [Wikimedia Hackathon 2026](Wikimedia%20Hackathon%202026/README.md) for detailed use cases.
 
 ## Licensing
 
@@ -122,6 +123,7 @@ LinkID technology is protected by patent application CH P220889 and internationa
 - [WICG Proposal: LinkID](https://github.com/WICG/proposals/issues/238) – Web Incubator Community Group proposal
 - [TPAC 2025 Breakout Session](https://www.w3.org/events/meetings/ef18fde3-f3f0-498a-addf-d47f33716014/) – LinkID presentation at W3C TPAC 2025, Kobe
 - [TPAC 2025 Session Proposal](https://github.com/w3c/tpac2025-breakouts/issues/83) – Original session proposal and discussion
+- [Wikimedia Hackathon 2026](Wikimedia%20Hackathon%202026/README.md) – Improving Wikipedia Reference Integrity with Persistent LinkIDs · Milan, May 1–3 2026 · [⚓ T422252](https://phabricator.wikimedia.org/T422252)
 
 ## Why LinkID? The Broken Links Problem
 
