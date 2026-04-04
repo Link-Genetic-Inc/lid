@@ -19,7 +19,7 @@ Add to your `pom.xml`:
 ## Quick Start
 
 ```java
-LinkIdClient client = new LinkIdClient("https://resolver.linkgenetic.com");
+LinkIdClient client = new LinkIdClient("https://linkid.io");
 ResolutionResult result = client.resolve("linkid:7e96f229-21c3-4a3d-a6cf-ef7d8dd70f24");
 System.out.println(result.getTargetUri());
 ```

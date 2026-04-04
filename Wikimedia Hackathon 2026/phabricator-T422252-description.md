@@ -65,7 +65,7 @@ Bridge — UC-6:
 - Deployable fully on WMF infrastructure — no external dependency
 
 LinkID is:
-- An open specification (W3C Community Group: https://www.w3.org/community/linkid/)
+- An open specification (W3C Community Group: https://github.com/WICG/proposals/issues/238)
 - Available under a Public Interest License (LPIL) for Wikimedia's use
 - Deployable fully on WMF infrastructure (no external dependency required)
 
@@ -124,8 +124,8 @@ No prior knowledge of LinkID or LinkManager is required. The use cases folder in
 - **Wikimedia use cases**: https://github.com/Link-Genetic-Inc/lid/tree/main/Wikimedia%20Hackathon%202026
 - **Demo** (LinkManager × Wikipedia): https://linkmanager.linkgenetic.com/integrations/wikipedia
 - **Loom walkthrough**: https://www.loom.com/share/614350752f0d426ca943db03b4aea24b
-- **W3C Community Group**: https://www.w3.org/community/linkid/
-- **Resolver** (live): https://resolver.linkgenetic.com
+- **W3C Community Group**: https://github.com/WICG/proposals/issues/238
+- **Resolver** (live): https://linkid.io
 - **JS SDK**: `npm install @linkgenetic/client`
 - **Python SDK**: `pip install linkid-client`
 

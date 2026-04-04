@@ -88,7 +88,7 @@ The `|linkid=` parameter is purely additive — no change to existing template b
 
 The minimal viable implementation for the hackathon requires:
 
-1. **A MediaWiki Lua module** that, when `|linkid=` is present, generates an `<a href="https://resolver.linkgenetic.com/resolve/UUID">` link instead of the raw URL
+1. **A MediaWiki Lua module** that, when `|linkid=` is present, generates an `<a href="https://linkid.io/resolve/UUID">` link instead of the raw URL
 2. **A test installation** on a MediaWiki sandbox to demonstrate end-to-end resolution
 3. Optionally: a **userscript** in the Visual Editor that calls the LinkID API on URL entry
 

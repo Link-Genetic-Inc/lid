@@ -36,7 +36,7 @@ This means that every registered citation has:
   "snapshots": [
     {
       "type": "linkid-internal",
-      "url": "https://archive.resolver.linkgenetic.com/snap/7e96f229/20260502",
+      "url": "https://archive.linkid.io/snap/7e96f229/20260502",
       "hash": "sha256:a3f9..."
     },
     {

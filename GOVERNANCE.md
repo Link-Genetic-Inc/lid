@@ -2,7 +2,7 @@
 
 ## Overview
 
-The LinkID project is maintained by **Link Genetic GmbH** (Zurich, Switzerland) in collaboration with the [W3C LinkID Community Group](https://www.w3.org/community/linkid/).
+The LinkID project is maintained by **Link Genetic GmbH** (Zurich, Switzerland) in collaboration with the [W3C LinkID Community Group](https://github.com/WICG/proposals/issues/238).
 
 The project operates on two layers:
 
@@ -24,7 +24,7 @@ Current maintainers: Link Genetic GmbH ([@Link-Genetic-Inc](https://github.com/L
 Anyone who submits a PR, files an issue, or participates in discussions. Must sign the [CLA](CLA.md) before their first PR is merged (automated via bot — no email required).
 
 ### Community Group Members
-Members of the [W3C LinkID Community Group](https://www.w3.org/community/linkid/) have a voice in the specification process. Joining is free and open.
+Members of the [W3C LinkID Community Group](https://github.com/WICG/proposals/issues/238) have a voice in the specification process. Joining is free and open.
 
 ---
 

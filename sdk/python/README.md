@@ -12,7 +12,7 @@ pip install linkid-client
 
 from linkid import LinkIdClient
 
-client = LinkIdClient(resolver="https://resolver.linkgenetic.com")
+client = LinkIdClient(resolver="https://linkid.io")
 result = client.resolve("linkid:7e96f229-21c3-4a3d-a6cf-ef7d8dd70f24")
 print(result.target_uri)
 

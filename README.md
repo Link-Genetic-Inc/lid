@@ -1,6 +1,6 @@
 # LinkID – Persistent Identifiers for the Web
 
-[![W3C Community Group](https://img.shields.io/badge/W3C-Community%20Group-blue)](https://www.w3.org/community/linkid/)
+[![W3C Community Group](https://img.shields.io/badge/W3C-Community%20Group-blue)](https://github.com/WICG/proposals/issues/238)
 [![IANA URI Scheme](https://img.shields.io/badge/IANA-linkid%3A%20URI%20Scheme-orange)](https://www.iana.org/assignments/uri-schemes/prov/linkid)
 [![License: LCL](https://img.shields.io/badge/License-LCL%20v1.0-green)](LICENSE)
 [![CI](https://github.com/Link-Genetic-Inc/lid/actions/workflows/ci.yml/badge.svg)](https://github.com/Link-Genetic-Inc/lid/actions/workflows/ci.yml)
@@ -41,7 +41,7 @@ npm install @linkgenetic/client
 ```typescript
 import { LinkIDClient } from '@linkgenetic/client';
 
-const client = new LinkIDClient({ resolverUrl: 'https://resolver.linkgenetic.com' });
+const client = new LinkIDClient({ resolverUrl: 'https://linkid.io' });
 const result = await client.resolve('linkid:7e96f229-21c3-4a3d-a6cf-ef7d8dd70f24');
 console.log(result.uri); // current location of the resource
 ```
@@ -55,7 +55,7 @@ pip install linkid-client
 ```python
 from linkid import LinkIdClient
 
-client = LinkIdClient(resolver="https://resolver.linkgenetic.com")
+client = LinkIdClient(resolver="https://linkid.io")
 result = client.resolve("linkid:7e96f229-21c3-4a3d-a6cf-ef7d8dd70f24")
 print(result.target_uri)  # current location of the resource
 ```
@@ -71,7 +71,7 @@ print(result.target_uri)  # current location of the resource
 ```
 
 ```java
-LinkIdClient client = new LinkIdClient("https://resolver.linkgenetic.com");
+LinkIdClient client = new LinkIdClient("https://linkid.io");
 ResolutionResult result = client.resolve("linkid:7e96f229-21c3-4a3d-a6cf-ef7d8dd70f24");
 System.out.println(result.getTargetUri());
 ```
