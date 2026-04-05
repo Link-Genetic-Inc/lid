@@ -85,6 +85,7 @@ LinkID is:
 - [ ] **UC-4** (LinkID): Reference archival triggered at registration time
 - [ ] **UC-5** (LinkID): Wikidata property proposal for `P_linkid`
 - [ ] **UC-7** (Combined): Cross-wiki and interwiki reference resilience model
+- [ ] **UC-8** (Combined): Wikipedia as LLM training data — reference health annotation layer for AI training corpora
 
 ---
 
@@ -99,6 +100,7 @@ LinkID is:
 | UC-5 | Persistent Reference Identifiers in Wikidata | LinkID | Link Rot + Content Drift |
 | UC-6 | Bot-Assisted Migration of Legacy References | Combined | Link Rot + Content Drift |
 | UC-7 | Cross-Wiki and Interwiki Reference Resilience | Combined | Link Rot + Content Drift |
+| UC-8 | Wikipedia as LLM Training Data — Reference Integrity at AI Scale | Combined | Link Rot + Content Drift |
 
 Full use case details: https://github.com/Link-Genetic-Inc/lid/tree/main/Wikimedia%20Hackathon%202026
 
