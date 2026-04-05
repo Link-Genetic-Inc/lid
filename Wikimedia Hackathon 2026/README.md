@@ -53,6 +53,7 @@ This folder documents use cases for integrating LinkID and LinkManager into the 
 |---|----------|
 | [UC-6](./linkmanager/uc-6-bot-assisted-migration.md) | Bot-Assisted Migration (LinkManager detects → LinkID replaces) |
 | [UC-7](./combined/uc-7-interwiki-resilience.md) | Cross-Wiki and Interwiki Reference Resilience |
+| [UC-8](./combined/uc-8-wikipedia-llm-training.md) | Wikipedia as LLM Training Data — Reference Integrity at AI Scale |
 
 ---
 
