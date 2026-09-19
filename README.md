@@ -66,7 +66,7 @@ print(result.data["target_url"])  # current location of the resource
 <dependency>
     <groupId>com.linkgenetic</groupId>
     <artifactId>linkid-client</artifactId>
-    <version>1.0.0</version>
+    <version>1.0.1</version>
 </dependency>
 ```
 

@@ -370,7 +370,7 @@ class LinkIdClient:
 
     def _build_default_headers(self) -> Dict[str, str]:
         headers: Dict[str, str] = {
-            "User-Agent": "LinkID-Python-Client/1.0.0",
+            "User-Agent": "LinkID-Python-Client/1.0.1",
             "Accept": "application/linkid+json, application/json, */*",
         }
         headers.update(self._extra_headers)
