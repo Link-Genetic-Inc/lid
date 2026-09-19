@@ -26,30 +26,7 @@ jobs:
       - uses: actions/setup-node@v6
         with:
           node-version: 22
-      - name: Install dependencies
-        id: npm-install
-        shell: bash
-        run: |
-          set +e
-          npm ci --include=dev --ignore-scripts --no-audit --no-fund
-          status=$?
-          set -e
-          if [ "$status" -ne 0 ]; then
-            log_file=$(find "$HOME/.npm/_logs" -type f -name '*-debug-0.log' -print | sort | tail -n 1)
-            if [ -n "$log_file" ]; then
-              grep -Eiv 'token|auth|password|username|credential|secret' "$log_file" \
-                | tail -n 500 > "$RUNNER_TEMP/npm-debug-redacted.log" || true
-            fi
-            exit "$status"
-          fi
-      - name: Upload redacted npm diagnostics
-        if: failure() && steps.npm-install.outcome == 'failure'
-        uses: actions/upload-artifact@v4
-        with:
-          name: npm-debug-redacted
-          path: ${{ runner.temp }}/npm-debug-redacted.log
-          if-no-files-found: error
-          retention-days: 1
+      - run: npm ci --include=dev --ignore-scripts --no-audit --no-fund
       - name: Run integration tests
         run: npm run test:integration
         env:
