@@ -7,7 +7,8 @@ name = "linkid-client"
 version = "1.0.0"
 description = "Python client SDK for LinkID persistent identifiers"
 readme = "README.md"
-license = { text = "LCL-1.0" }
+license = "Apache-2.0"
+license-files = ["LICENSE"]
 authors = [{ name = "Link Genetic GmbH", email = "info@linkgenetic.com" }]
 keywords = ["linkid", "persistent-identifier", "resolver", "sdk"]
 requires-python = ">=3.9"
@@ -27,6 +28,7 @@ include = ["linkid*"]
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]
+markers = ["integration: live unauthenticated tests against the public resolver"]
 
 [tool.ruff]
 target-version = "py39"

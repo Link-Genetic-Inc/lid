@@ -74,13 +74,13 @@ class TestLinkIdClient:
                 self.client.resolve(VALID_ID)
             assert exc_info.value.code == ErrorCode.NOT_FOUND
 
-    def test_register_requires_api_key(self):
-        with pytest.raises(ValidationError, match="API key required"):
+    def test_register_is_explicitly_unsupported(self):
+        with pytest.raises(ValidationError, match="not supported"):
             self.client.register("https://example.com/doc.pdf")
 
     def test_register_validates_target_uri(self):
         client = LinkIdClient(resolver=RESOLVER, api_key="test-key")
-        with pytest.raises(ValidationError, match="absolute HTTP"):
+        with pytest.raises(ValidationError, match="not supported"):
             client.register("not-a-url")
         client.close()
 

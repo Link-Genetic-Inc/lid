@@ -1,7 +1,7 @@
-// SPDX-License-Identifier: LicenseRef-LCL-1.0
+// SPDX-License-Identifier: Apache-2.0
 // SPDX-FileCopyrightText: 2025-2026 Link Genetic GmbH <info@linkgenetic.com>
 
-package org.linkgenetic.linkid;
+package com.linkgenetic.linkid;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
@@ -132,8 +132,7 @@ public final class LinkIdClient {
     }
 
     public JsonNode register(RegistrationRequest request) {
-        Objects.requireNonNull(request, "request");
-        validateRegistrationTarget(request.targetUri());
+        unsupported();
 
         URI requestUri = resolverUri.resolve("/register");
         ObjectNode body = request.toJson(objectMapper);
@@ -153,10 +152,9 @@ public final class LinkIdClient {
     }
 
     public void update(String linkId, ObjectNode request) {
-        Objects.requireNonNull(request, "request");
-        validateLinkId(linkId);
+        unsupported();
 
-        URI requestUri = resolverUri.resolve("/resolve/" + linkId);
+        URI requestUri = resolverUri.resolve("/api/public/resolve/" + normalizeIdentifier(linkId));
 
         HttpRequest.Builder builder = HttpRequest.newBuilder(requestUri)
             .timeout(timeout)
@@ -174,8 +172,7 @@ public final class LinkIdClient {
     }
 
     public void withdraw(String linkId, ObjectNode request) {
-        Objects.requireNonNull(request, "request");
-        validateLinkId(linkId);
+        unsupported();
 
         URI requestUri = resolverUri.resolve("/resolve/" + linkId);
 
@@ -290,7 +287,8 @@ public final class LinkIdClient {
     }
 
     private URI buildResolveUri(String linkId, ResolveOptions options) {
-        StringBuilder path = new StringBuilder("/resolve/").append(linkId);
+        StringBuilder path = new StringBuilder("/api/public/resolve/")
+            .append(normalizeIdentifier(linkId));
         String query = options.toQueryString();
         if (!query.isBlank()) {
             path.append('?').append(query);
@@ -380,16 +378,27 @@ public final class LinkIdClient {
         return response.headers().firstValue("X-LinkID-Resolver").orElse(resolverUri.toString());
     }
 
-    private static void validateLinkId(String linkId) {
+    private static String normalizeIdentifier(String linkId) {
         if (linkId == null || linkId.isBlank()) {
             throw new ValidationException("LinkID must be a non-empty string");
         }
         if (linkId.length() < 32 || linkId.length() > 64) {
-            throw new ValidationException("LinkID must be between 32 and 64 characters");
+            throw new ValidationException("Identifier must be linkid:<uuid>, lid:<uuid>, or a UUID");
         }
-        if (!linkId.matches("[A-Za-z0-9._~-]+")) {
-            throw new ValidationException("LinkID contains invalid characters");
-        }
+        String value = linkId.trim().toLowerCase();
+        if (value.startsWith("linkid:")) value = value.substring(7);
+        else if (value.startsWith("lid:")) value = value.substring(4);
+        if (!value.matches("[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}"))
+            throw new ValidationException("Identifier must be linkid:<uuid>, lid:<uuid>, or a UUID");
+        return value;
+    }
+
+    private static void unsupported() {
+        throw new ValidationException("This operation is not supported by the public resolve-only v1 SDK");
+    }
+
+    private static void validateLinkId(String linkId) {
+        normalizeIdentifier(linkId);
     }
 
     private static void validateRegistrationTarget(String targetUri) {
@@ -606,7 +615,7 @@ public final class LinkIdClient {
     }
 
     public static final class Builder {
-        private URI resolverUri = URI.create("https://resolver.linkid.io");
+        private URI resolverUri = URI.create("https://linkid.io");
         private String apiKey;
         private Duration timeout = Duration.ofSeconds(10);
         private int retries = 3;
