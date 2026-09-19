@@ -1,4 +1,4 @@
-# SPDX-License-Identifier: LicenseRef-LCL-1.0
+# SPDX-License-Identifier: Apache-2.0
 # SPDX-FileCopyrightText: 2025-2026 Link Genetic GmbH <info@linkgenetic.com>
 
 """LinkID client for Python.
@@ -30,8 +30,7 @@ from .errors import (
 # Data classes
 # ---------------------------------------------------------------------------
 
-_LINKID_PATTERN = re.compile(r"^[A-Za-z0-9._~-]{32,64}$")
-_LINKID_URI_PREFIX = "linkid:"
+_LINKID_PATTERN = re.compile(r"^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$", re.I)
 
 
 @dataclass(frozen=True)
@@ -70,10 +69,10 @@ class LinkIdClient:
     ----------
     resolver:
         Base URL of the LinkID resolver
-        (e.g. ``"https://resolver.linkgenetic.com"``).
+        (e.g. ``"https://linkid.io"``).
     api_key:
-        Optional API key required for registration, update, and
-        withdrawal operations.
+        Reserved for future authenticated operations. Public SDK v1 supports
+        resolution only.
     timeout:
         Request timeout in seconds (default ``10.0``).
     retries:
@@ -87,14 +86,14 @@ class LinkIdClient:
 
     Example
     -------
-    >>> client = LinkIdClient(resolver="https://resolver.linkgenetic.com")
-    >>> result = client.resolve("linkid:7e96f229-21c3-4a3d-a6cf-ef7d8dd70f24")
-    >>> print(result.target_uri)
+    >>> client = LinkIdClient()
+    >>> result = client.resolve("linkid:b1a93fdb-ab8a-49f8-a359-33ad79e19df3")
+    >>> print(result.data["target_url"])
     """
 
     def __init__(
         self,
-        resolver: str = "https://resolver.linkgenetic.com",
+        resolver: str = "https://linkid.io",
         *,
         api_key: Optional[str] = None,
         timeout: float = 10.0,
@@ -175,7 +174,7 @@ class LinkIdClient:
         if metadata:
             params["metadata"] = "true"
 
-        url = f"{self.resolver}/resolve/{raw_id}"
+        url = f"{self.resolver}/api/public/resolve/{raw_id}"
         response = self._request("GET", url, params=params)
 
         if self._is_redirect(response.status_code):
@@ -234,8 +233,7 @@ class LinkIdClient:
         dict
             Registration result including the newly assigned LinkID.
         """
-        self._require_api_key("registration")
-        self._validate_url(target_uri)
+        raise ValidationError("Registration is not supported by the public resolve-only v1 SDK")
 
         body: Dict[str, Any] = {"targetUri": target_uri}
         if media_type:
@@ -277,9 +275,7 @@ class LinkIdClient:
         metadata:
             New metadata (replaces existing).
         """
-        raw_id = self._strip_prefix(link_id)
-        self._validate_link_id(raw_id)
-        self._require_api_key("update")
+        raise ValidationError("Updates are not supported by the public resolve-only v1 SDK")
 
         body: Dict[str, Any] = {}
         if target_uri is not None:
@@ -315,9 +311,7 @@ class LinkIdClient:
         reason:
             Optional human-readable reason.
         """
-        raw_id = self._strip_prefix(link_id)
-        self._validate_link_id(raw_id)
-        self._require_api_key("withdrawal")
+        raise ValidationError("Deletion is not supported by the public resolve-only v1 SDK")
 
         body: Dict[str, Any] = {}
         if reason:
@@ -349,17 +343,20 @@ class LinkIdClient:
 
     @staticmethod
     def _strip_prefix(link_id: str) -> str:
-        if link_id.startswith(_LINKID_URI_PREFIX):
-            return link_id[len(_LINKID_URI_PREFIX):]
-        return link_id
+        value = link_id.strip()
+        for prefix in ("linkid:", "lid:"):
+            if value.lower().startswith(prefix):
+                value = value[len(prefix):]
+                break
+        return value.lower()
 
     @staticmethod
     def _validate_link_id(link_id: str) -> None:
         if not link_id:
             raise ValidationError("LinkID must be a non-empty string")
-        if not _LINKID_PATTERN.match(link_id):
+        if not _LINKID_PATTERN.fullmatch(link_id):
             raise ValidationError(
-                f"Invalid LinkID format: must be 32-64 URL-safe characters, got '{link_id}'"
+                f"Invalid identifier: expected linkid:<uuid>, lid:<uuid>, or a UUID, got '{link_id}'"
             )
 
     @staticmethod

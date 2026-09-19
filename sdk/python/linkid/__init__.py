@@ -1,4 +1,4 @@
-# SPDX-License-Identifier: LicenseRef-LCL-1.0
+# SPDX-License-Identifier: Apache-2.0
 # SPDX-FileCopyrightText: 2025-2026 Link Genetic GmbH <info@linkgenetic.com>
 
 """LinkID Python Client SDK.
@@ -8,9 +8,9 @@ Provides a client library for interacting with LinkID resolvers.
 Example
 -------
 >>> from linkid import LinkIdClient
->>> client = LinkIdClient(resolver="https://resolver.linkgenetic.com")
->>> result = client.resolve("linkid:7e96f229-21c3-4a3d-a6cf-ef7d8dd70f24")
->>> print(result.target_uri)
+>>> client = LinkIdClient()
+>>> result = client.resolve("linkid:b1a93fdb-ab8a-49f8-a359-33ad79e19df3")
+>>> print(result.data["target_url"])
 """
 
 from .client import (

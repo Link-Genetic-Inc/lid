@@ -4,13 +4,15 @@
 
 Java client library for the [LinkID](https://linkgenetic.com) persistent identifier system.
 
-## Installation (Maven)
+## Publication status
+
+The Maven artifact is publication-ready but is not yet published.
 
 Add to your `pom.xml`:
 
 ```xml
 <dependency>
-    <groupId>org.linkgenetic</groupId>
+    <groupId>com.linkgenetic</groupId>
     <artifactId>linkid-client</artifactId>
     <version>1.0.0</version>
 </dependency>
@@ -19,9 +21,10 @@ Add to your `pom.xml`:
 ## Quick Start
 
 ```java
-LinkIdClient client = new LinkIdClient("https://linkid.io");
-ResolutionResult result = client.resolve("linkid:7e96f229-21c3-4a3d-a6cf-ef7d8dd70f24");
-System.out.println(result.getTargetUri());
+LinkIdClient client = LinkIdClient.builder().build();
+LinkIdClient.MetadataResolution result = (LinkIdClient.MetadataResolution)
+    client.resolve("linkid:b1a93fdb-ab8a-49f8-a359-33ad79e19df3");
+System.out.println(result.metadata().get("target_url").asText());
 ```
 
 ## Requirements
@@ -36,4 +39,4 @@ mvn --batch-mode verify
 
 ## License
 
-[LCL v1.0](../../LICENSE) – free for non-commercial use.
+[Apache-2.0](LICENSE). This SDK currently supports public resolution only.

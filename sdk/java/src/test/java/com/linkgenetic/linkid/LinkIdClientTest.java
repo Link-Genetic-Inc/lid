@@ -1,4 +1,4 @@
-package org.linkgenetic.linkid;
+package com.linkgenetic.linkid;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.BeforeEach;
@@ -6,21 +6,25 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class LinkIdClientTest {
 
-    private static final String RESOLVER = "https://resolver.linkgenetic.com";
+    private static final String RESOLVER = "https://linkid.io";
     private static final String VALID_ID = "linkid:7e96f229-21c3-4a3d-a6cf-ef7d8dd70f24";
     private static final String INVALID_ID = "not-a-linkid";
 
     private LinkIdClient client;
 
     @BeforeEach
-    void setUp() { client = new LinkIdClient(RESOLVER); }
+    void setUp() {
+        client = LinkIdClient.builder()
+            .resolverUri(java.net.URI.create(RESOLVER))
+            .build();
+    }
 
     @Test
     void constructor_setsResolver() { assertNotNull(client); }
 
     @Test
     void resolve_throwsOnInvalidLinkId() {
-        assertThrows(LinkIdException.InvalidLinkId.class, () -> client.resolve(INVALID_ID));
+        assertThrows(LinkIdClient.ValidationException.class, () -> client.resolve(INVALID_ID));
     }
 
     @Test

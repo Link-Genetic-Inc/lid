@@ -1,4 +1,4 @@
-// SPDX-License-Identifier: LicenseRef-LCL-1.0
+// SPDX-License-Identifier: Apache-2.0
 // SPDX-FileCopyrightText: 2025-2026 Link Genetic GmbH <info@linkgenetic.com>
 
 /**
@@ -46,7 +46,7 @@ export class LinkIDClient {
   constructor(config: LinkIDClientConfig) {
     // Set default configuration
     this.config = {
-      resolverUrl: config.resolverUrl || 'https://resolver.linkid.org',
+      resolverUrl: config.resolverUrl || 'https://linkid.io',
       apiKey: config.apiKey,
       timeout: config.timeout || 10000,
       retries: config.retries || 3,
@@ -108,6 +108,10 @@ export class LinkIDClient {
         headers: this.buildHeaders(options.headers)
       });
 
+       if (!response.ok) {
+         await this.handleErrorResponse(response, linkId);
+       }
+
       let result: ResolutionResult;
 
       if (response.redirected) {
@@ -163,37 +167,8 @@ export class LinkIDClient {
    * });
    * ```
    */
-  async register(request: RegistrationRequest): Promise<RegistrationResult> {
-    this.validateRegistrationRequest(request);
-
-    if (!this.config.apiKey) {
-      throw new ValidationError('API key required for registration');
-    }
-
-    const url = `${this.config.resolverUrl}/register`;
-
-    try {
-      const response = await this.makeRequest(url, {
-        method: 'POST',
-        headers: {
-          ...this.buildHeaders(),
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(request)
-      });
-
-      if (!response.ok) {
-        await this.handleErrorResponse(response);
-      }
-
-      return await response.json();
-
-    } catch (error) {
-      if (error instanceof Response) {
-        await this.handleErrorResponse(error);
-      }
-      throw error;
-    }
+  async register(_request: RegistrationRequest): Promise<RegistrationResult> {
+    throw new ValidationError('Registration is not supported by the public resolve-only v1 SDK');
   }
 
   /**
@@ -203,40 +178,8 @@ export class LinkIDClient {
    * @param request - Update request data
    * @returns Promise resolving when update is complete
    */
-  async update(linkId: string, request: UpdateRequest): Promise<void> {
-    this.validateLinkID(linkId);
-
-    if (!this.config.apiKey) {
-      throw new ValidationError('API key required for updates');
-    }
-
-    const url = `${this.config.resolverUrl}/resolve/${linkId}`;
-
-    try {
-      const response = await this.makeRequest(url, {
-        method: 'PUT',
-        headers: {
-          ...this.buildHeaders(),
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(request)
-      });
-
-      if (!response.ok) {
-        await this.handleErrorResponse(response, linkId);
-      }
-
-      // Invalidate cache
-      if (this.config.caching) {
-        await this.cache.delete(`linkid:${linkId}:*`);
-      }
-
-    } catch (error) {
-      if (error instanceof Response) {
-        await this.handleErrorResponse(error, linkId);
-      }
-      throw error;
-    }
+  async update(_linkId: string, _request: UpdateRequest): Promise<void> {
+    throw new ValidationError('Updates are not supported by the public resolve-only v1 SDK');
   }
 
   /**
@@ -246,40 +189,8 @@ export class LinkIDClient {
    * @param request - Withdrawal request data
    * @returns Promise resolving when withdrawal is complete
    */
-  async withdraw(linkId: string, request: WithdrawalRequest = {}): Promise<void> {
-    this.validateLinkID(linkId);
-
-    if (!this.config.apiKey) {
-      throw new ValidationError('API key required for withdrawal');
-    }
-
-    const url = `${this.config.resolverUrl}/resolve/${linkId}`;
-
-    try {
-      const response = await this.makeRequest(url, {
-        method: 'DELETE',
-        headers: {
-          ...this.buildHeaders(),
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(request)
-      });
-
-      if (!response.ok) {
-        await this.handleErrorResponse(response, linkId);
-      }
-
-      // Invalidate cache
-      if (this.config.caching) {
-        await this.cache.delete(`linkid:${linkId}:*`);
-      }
-
-    } catch (error) {
-      if (error instanceof Response) {
-        await this.handleErrorResponse(error, linkId);
-      }
-      throw error;
-    }
+  async withdraw(_linkId: string, _request: WithdrawalRequest = {}): Promise<void> {
+    throw new ValidationError('Deletion is not supported by the public resolve-only v1 SDK');
   }
 
   /**
@@ -314,13 +225,7 @@ export class LinkIDClient {
       throw new ValidationError('LinkID must be a non-empty string');
     }
 
-    if (linkId.length < 32 || linkId.length > 64) {
-      throw new ValidationError('LinkID must be 32-64 characters long');
-    }
-
-    if (!/^[A-Za-z0-9._~-]+$/.test(linkId)) {
-      throw new ValidationError('LinkID contains invalid characters');
-    }
+    this.normalizeIdentifier(linkId);
   }
 
   /**
@@ -342,7 +247,7 @@ export class LinkIDClient {
    * Build resolve URL with query parameters
    */
   private buildResolveUrl(linkId: string, options: ResolutionOptions): string {
-    const url = new URL(`/resolve/${linkId}`, this.config.resolverUrl);
+    const url = new URL(`/api/public/resolve/${this.normalizeIdentifier(linkId)}`, this.config.resolverUrl);
 
     if (options.format) url.searchParams.set('format', options.format);
     if (options.language) url.searchParams.set('lang', options.language);
@@ -351,6 +256,14 @@ export class LinkIDClient {
     if (options.metadata) url.searchParams.set('metadata', 'true');
 
     return url.toString();
+  }
+
+  private normalizeIdentifier(identifier: string): string {
+    const value = identifier.trim();
+    const match = value.match(/^(?:linkid|lid):([0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12})$/i)
+      || value.match(/^([0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12})$/i);
+    if (!match) throw new ValidationError('Identifier must be linkid:<uuid>, lid:<uuid>, or a UUID');
+    return match[1].toLowerCase();
   }
 
   /**

@@ -1,4 +1,4 @@
-// SPDX-License-Identifier: LicenseRef-LCL-1.0
+// SPDX-License-Identifier: Apache-2.0
 // SPDX-FileCopyrightText: 2025-2026 Link Genetic GmbH <info@linkgenetic.com>
 
 /**

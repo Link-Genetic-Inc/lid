@@ -23,7 +23,7 @@ lid/
 ├── sdk/              # Client libraries
 │   ├── js/           # JavaScript/TypeScript – npm: @linkgenetic/client
 │   ├── python/       # Python – pip: linkid-client
-│   └── java/         # Java – Maven: org.linkgenetic:linkid-client
+│   └── java/         # Java – Maven: com.linkgenetic:linkid-client
 ├── spec/             # W3C Specification
 ├── draft/            # IETF Internet-Draft (URI scheme)
 ├── docs/             # Contributing guidelines, Code of Conduct
@@ -43,7 +43,7 @@ import { LinkIDClient } from '@linkgenetic/client';
 
 const client = new LinkIDClient({ resolverUrl: 'https://linkid.io' });
 const result = await client.resolve('linkid:7e96f229-21c3-4a3d-a6cf-ef7d8dd70f24');
-console.log(result.uri); // current location of the resource
+console.log(result.data.target_url); // current location of the resource
 ```
 
 ### Python
@@ -55,25 +55,26 @@ pip install linkid-client
 ```python
 from linkid import LinkIdClient
 
-client = LinkIdClient(resolver="https://linkid.io")
+client = LinkIdClient()
 result = client.resolve("linkid:7e96f229-21c3-4a3d-a6cf-ef7d8dd70f24")
-print(result.target_uri)  # current location of the resource
+print(result.data["target_url"])  # current location of the resource
 ```
 
 ### Java
 
 ```xml
 <dependency>
-    <groupId>org.linkgenetic</groupId>
+    <groupId>com.linkgenetic</groupId>
     <artifactId>linkid-client</artifactId>
     <version>1.0.0</version>
 </dependency>
 ```
 
 ```java
-LinkIdClient client = new LinkIdClient("https://linkid.io");
-ResolutionResult result = client.resolve("linkid:7e96f229-21c3-4a3d-a6cf-ef7d8dd70f24");
-System.out.println(result.getTargetUri());
+LinkIdClient client = LinkIdClient.builder().build();
+LinkIdClient.MetadataResolution result = (LinkIdClient.MetadataResolution)
+    client.resolve("linkid:7e96f229-21c3-4a3d-a6cf-ef7d8dd70f24");
+System.out.println(result.metadata().get("target_url").asText());
 ```
 
 ## Use Cases
@@ -97,7 +98,12 @@ This project uses a Triple License model:
 | **LPIL** (Public Interest License) | Universities, libraries, government, NGOs | Free |
 | **LEL** (Enterprise License) | Commercial use | [Contact us](mailto:licensing@linkgenetic.com) |
 
-Client SDK libraries are freely usable under LCL. Server-side implementations of the LinkID system are available under LEL or LPIL.
+The repository root remains under LCL. The client SDK source in `sdk/js`,
+`sdk/python`, and `sdk/java` is separately licensed under Apache-2.0 and each
+SDK includes its own license file. The SDK packages are publication-ready but
+are not yet published; installation examples should be treated as upcoming.
+The public SDK v1 is resolve-only and uses the unauthenticated
+`https://linkid.io/api/public/resolve/{uuid}` endpoint.
 
 ## Contributing
 

@@ -10,6 +10,7 @@
     "build": "rollup -c",
     "build:watch": "rollup -c -w",
     "test": "jest",
+    "test:integration": "jest --runInBand --testPathPattern=integration --passWithNoTests",
     "test:watch": "jest --watch",
     "test:coverage": "jest --coverage",
     "lint": "eslint src/ --ext .ts,.js",
@@ -20,7 +21,8 @@
   },
   "keywords": ["linkid", "persistent-identifier", "web", "resolver", "client", "sdk"],
   "author": "Link Genetic GmbH <info@linkgenetic.com>",
-  "license": "LCL-1.0",
+  "license": "Apache-2.0",
+  "publishConfig": { "access": "public" },
   "repository": {
     "type": "git",
     "url": "https://github.com/Link-Genetic-Inc/lid.git",

@@ -1,4 +1,4 @@
-// SPDX-License-Identifier: LicenseRef-LCL-1.0
+// SPDX-License-Identifier: Apache-2.0
 // SPDX-FileCopyrightText: 2025-2026 Link Genetic GmbH <info@linkgenetic.com>
 
 /**
@@ -9,7 +9,7 @@
  * Base error class for LinkID operations
  */
 export class LinkIDError extends Error {
-  public readonly code: string;
+  public code: string;
   public readonly timestamp: string;
 
   constructor(message: string, code: string = 'LINKID_ERROR') {

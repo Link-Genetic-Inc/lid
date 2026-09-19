@@ -4,11 +4,11 @@
 
 ---
 
-## ✅ Completed — v1.0.0 (Feb 2026)
+## ✅ Completed
 
 - JavaScript / TypeScript SDK (`@linkgenetic/client`)
 - Python SDK (`linkid-client`)
-- Java SDK (`org.linkgenetic:linkid-client`)
+- Java SDK (`com.linkgenetic:linkid-client`)
 - W3C Specification draft
 - IETF Internet-Draft for `linkid:` URI scheme
 - IANA `linkid:` URI scheme provisional registration
@@ -18,18 +18,16 @@
 
 ---
 
-## 🚧 In Progress — Q1 2026
+## 🚧 Current status
 
 - [ ] CI pipeline fully green
-- [ ] Publish JS SDK to npm
-- [ ] Publish Python SDK to PyPI
-- [ ] Publish Java SDK to Maven Central
+- [ ] Publish SDK packages (packages are publication-ready, but not yet published)
 - [ ] Integration tests against live resolver
 - [ ] TypeDoc API docs auto-deployed to GitHub Pages
 
 ---
 
-## 📅 Planned — Q2 2026
+## 📅 Planned
 
 - [ ] **Go SDK** (`go get github.com/Link-Genetic-Inc/linkid-go`)
 - [ ] **Ruby gem** (`gem install linkid-client`)
@@ -56,4 +54,4 @@
 - AI-powered semantic link repair (LinkManager)
 - Enterprise management portal
 
-*Last updated: March 2026*
+*Last updated: current repository status*

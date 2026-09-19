@@ -32,7 +32,9 @@ and semantically resolvable** forever.
 
 ## License
 
-This repository uses the **Link Genetic Community License (LCL) v1.0**.
+The repository root uses the **Link Genetic Community License (LCL) v1.0**.
+The three client SDK directories are independently licensed under Apache-2.0
+and include per-SDK license files. The SDK packages are not yet published.
 
 - **Non-commercial use** (research, evaluation, personal projects): Free
 - **Public interest use** (universities, libraries, government, NGOs): Free under LPIL

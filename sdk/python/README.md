@@ -6,15 +6,16 @@ Python client library for the [LinkID](https://linkgenetic.com) persistent ident
 
 ## Installation
 
-pip install linkid-client
+The PyPI package is publication-ready but is not yet published; installation
+will be available after the first release.
 
 ## Quick Start
 
 from linkid import LinkIdClient
 
-client = LinkIdClient(resolver="https://linkid.io")
-result = client.resolve("linkid:7e96f229-21c3-4a3d-a6cf-ef7d8dd70f24")
-print(result.target_uri)
+client = LinkIdClient()
+result = client.resolve("linkid:b1a93fdb-ab8a-49f8-a359-33ad79e19df3")
+print(result.data)
 
 ## Requirements
 
@@ -27,4 +28,4 @@ pytest --cov=. --cov-report=xml
 
 ## License
 
-[LCL v1.0](../../LICENSE) – free for non-commercial use.
+[Apache-2.0](LICENSE). This SDK currently supports public resolution only.
