@@ -34,6 +34,9 @@ markers = ["integration: live unauthenticated tests against the public resolver"
 target-version = "py39"
 line-length = 100
 
+[tool.ruff.lint]
+select = ["E4", "E7", "E9", "F"]
+
 [tool.mypy]
 python_version = "3.9"
 strict = true

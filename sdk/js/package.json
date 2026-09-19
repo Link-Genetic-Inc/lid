@@ -7,8 +7,8 @@
   "types": "dist/index.d.ts",
   "files": ["dist/", "src/", "README.md", "LICENSE"],
   "scripts": {
-    "build": "rollup -c",
-    "build:watch": "rollup -c -w",
+    "build": "rollup -c rollup.config.mjs",
+    "build:watch": "rollup -c rollup.config.mjs -w",
     "test": "jest",
     "test:integration": "jest --runInBand --testPathPattern=integration --passWithNoTests",
     "test:watch": "jest --watch",
