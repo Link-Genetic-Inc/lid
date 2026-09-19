@@ -7,16 +7,23 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.0.1] - 2026-09-19
+
 ### Added
-- JavaScript/TypeScript SDK: `tsconfig.json`, `rollup.config.js`, `jest.config.js`, `.eslintrc.js`
-- Python SDK: `pyproject.toml` (PEP 517/518) for installable package
-- Java SDK: `LinkIdException`, `ResolutionResult` classes and unit tests
-- `CHANGELOG.md` (this file)
-- `SECURITY.md` with vulnerability reporting process
-- `.github/PULL_REQUEST_TEMPLATE.md`
+- Publication-ready JavaScript, Python, and Java client SDK packages
+- Apache License 2.0 files and package metadata for each public client SDK
+- Gated live integration tests for the public LinkID resolver contract
+
+### Changed
+- Public SDKs now resolve through `https://linkid.io/api/public/resolve/{identifier}`
+- Java coordinates and package namespace use `com.linkgenetic`
+- Maven publishing uses the current Central Publisher Portal workflow
+- Registry and availability claims now match the packages' pre-release status
 
 ### Fixed
-- `sdk/js/package.json`: corrected package name (`@linkgenetic/client`), repository URL, license (`LCL-1.0`), homepage
+- Unsupported public write operations fail locally instead of calling nonexistent endpoints
+- JavaScript lockfile uses public npm registry URLs so external CI can install dependencies
+- GitHub Actions install JavaScript dependencies reliably on Node.js 22
 
 ## [1.0.0] - 2026-02-28
 

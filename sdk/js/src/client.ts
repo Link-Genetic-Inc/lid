@@ -52,7 +52,7 @@ export class LinkIDClient {
       retries: config.retries || 3,
       caching: config.caching !== false,
       cacheTTL: config.cacheTTL || 3600,
-      userAgent: config.userAgent || `LinkID-Client-JS/1.0.0`,
+      userAgent: config.userAgent || `LinkID-Client-JS/1.0.1`,
       headers: config.headers || {},
       validateSSL: config.validateSSL !== false
     };

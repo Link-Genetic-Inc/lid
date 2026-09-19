@@ -74,6 +74,7 @@ jobs:
 
   github-release:
     name: Create GitHub Release
+    needs: [release-js, release-python, release-java]
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
