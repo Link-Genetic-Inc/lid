@@ -6,7 +6,8 @@ Java client library for the [LinkID](https://linkgenetic.com) persistent identif
 
 ## Publication status
 
-The Maven artifact is publication-ready but is not yet published.
+Version 1.0.1 is published on
+[Maven Central](https://central.sonatype.com/artifact/com.linkgenetic/linkid-client/1.0.1).
 
 Add to your `pom.xml`:
 

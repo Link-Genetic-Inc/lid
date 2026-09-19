@@ -1,17 +1,17 @@
 # LinkID JavaScript / TypeScript SDK
 
 [![npm](https://img.shields.io/npm/v/@linkgenetic/client)](https://www.npmjs.com/package/@linkgenetic/client)
-[![License: LCL](https://img.shields.io/badge/License-LCL%20v1.0-green)](../../LICENSE)
+[![License: Apache-2.0](https://img.shields.io/badge/License-Apache--2.0-green)](LICENSE)
 
 JavaScript and TypeScript client library for the [LinkID](https://linkgenetic.com) persistent identifier system.
 
 ## Publication status
 
-The npm package is publication-ready but is not yet published. Do not rely on
-the installation command until a release is announced.
+Version 1.0.1 is published on
+[npm](https://www.npmjs.com/package/@linkgenetic/client).
 
 ```bash
-npm install @linkgenetic/client # available after publication
+npm install @linkgenetic/client
 ```
 
 ## Usage
