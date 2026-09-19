@@ -100,8 +100,10 @@ This project uses a Triple License model:
 
 The repository root remains under LCL. The client SDK source in `sdk/js`,
 `sdk/python`, and `sdk/java` is separately licensed under Apache-2.0 and each
-SDK includes its own license file. The SDK packages are publication-ready but
-are not yet published; installation examples should be treated as upcoming.
+SDK includes its own license file. Version 1.0.1 is publicly available from
+[npm](https://www.npmjs.com/package/@linkgenetic/client),
+[PyPI](https://pypi.org/project/linkid-client/), and
+[Maven Central](https://central.sonatype.com/artifact/com.linkgenetic/linkid-client/1.0.1).
 The public SDK v1 is resolve-only and uses the unauthenticated
 `https://linkid.io/api/public/resolve/{uuid}` endpoint.
 
