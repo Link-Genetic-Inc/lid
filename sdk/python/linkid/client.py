@@ -277,25 +277,6 @@ class LinkIdClient:
         """
         raise ValidationError("Updates are not supported by the public resolve-only v1 SDK")
 
-        body: Dict[str, Any] = {}
-        if target_uri is not None:
-            self._validate_url(target_uri)
-            body["targetUri"] = target_uri
-        if media_type is not None:
-            body["mediaType"] = media_type
-        if language is not None:
-            body["language"] = language
-        if metadata is not None:
-            body["metadata"] = metadata
-
-        url = f"{self.resolver}/resolve/{raw_id}"
-        response = self._request("PUT", url, json=body)
-
-        if response.status_code not in (200, 204):
-            self._handle_error(response, raw_id)
-
-        self._invalidate_cache(raw_id)
-
     def withdraw(
         self,
         link_id: str,
@@ -312,18 +293,6 @@ class LinkIdClient:
             Optional human-readable reason.
         """
         raise ValidationError("Deletion is not supported by the public resolve-only v1 SDK")
-
-        body: Dict[str, Any] = {}
-        if reason:
-            body["reason"] = reason
-
-        url = f"{self.resolver}/resolve/{raw_id}"
-        response = self._request("DELETE", url, json=body if body else None)
-
-        if response.status_code not in (200, 204):
-            self._handle_error(response, raw_id)
-
-        self._invalidate_cache(raw_id)
 
     def clear_cache(self) -> None:
         """Remove all cached resolution results."""
