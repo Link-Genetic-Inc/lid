@@ -1,13 +1,12 @@
 """Unit tests for the LinkID Python client SDK."""
 
-import pytest
-from unittest.mock import MagicMock, patch
+from unittest.mock import patch
 
 import httpx
+import pytest
 
-from linkid.client import LinkIdClient, RedirectResolution, MetadataResolution
-from linkid.errors import LinkIdError, ErrorCode, ValidationError, NotFoundError, NetworkError
-
+from linkid.client import LinkIdClient, MetadataResolution, RedirectResolution
+from linkid.errors import ErrorCode, LinkIdError, NotFoundError, ValidationError
 
 RESOLVER = "https://resolver.linkgenetic.com"
 VALID_ID = "linkid:7e96f229-21c3-4a3d-a6cf-ef7d8dd70f24"

@@ -18,13 +18,13 @@ jobs:
       run:
         working-directory: sdk/js
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
       - name: Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v7
         with:
           node-version: ${{ matrix.node-version }}
       - name: Install dependencies
-        run: npm install
+        run: npm ci --include=dev --ignore-scripts --no-audit --no-fund
       - name: Lint
         run: npm run lint
       - name: Type check
@@ -45,9 +45,9 @@ jobs:
       run:
         working-directory: sdk/python
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
       - name: Set up Python ${{ matrix.python-version }}
-        uses: actions/setup-python@v5
+        uses: actions/setup-python@v7
         with:
           python-version: ${{ matrix.python-version }}
       - name: Install dependencies
@@ -73,24 +73,24 @@ jobs:
       run:
         working-directory: sdk/java
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
       - name: Set up JDK ${{ matrix.java-version }}
-        uses: actions/setup-java@v4
+        uses: actions/setup-java@v6
         with:
           java-version: ${{ matrix.java-version }}
           distribution: temurin
           cache: maven
       - name: Build and test
-        run: mvn --batch-mode --update-snapshots verify
+        run: mvn --batch-mode --update-snapshots -Dgpg.skip=true verify
 
   # ── Spec HTML Validation ────────────────────────────────────────
   spec-validate:
     name: Spec HTML Validation
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
       - name: Validate spec/index.html
         uses: Cyb3r-Jak3/html5validator-action@v8.0.0
         with:
-          root: spec/index.html
+          root: spec/
           css: true
