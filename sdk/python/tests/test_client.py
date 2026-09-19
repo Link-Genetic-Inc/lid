@@ -8,7 +8,6 @@ import pytest
 from linkid.client import LinkIdClient, MetadataResolution, RedirectResolution
 from linkid.errors import ErrorCode, LinkIdError, NotFoundError, ValidationError
 
-
 RESOLVER = "https://resolver.linkgenetic.com"
 VALID_ID = "linkid:7e96f229-21c3-4a3d-a6cf-ef7d8dd70f24"
 VALID_RAW_ID = "7e96f229-21c3-4a3d-a6cf-ef7d8dd70f24"

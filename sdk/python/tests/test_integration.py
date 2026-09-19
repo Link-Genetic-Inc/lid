@@ -21,6 +21,11 @@ def test_public_resolution_contract() -> None:
         )
     assert isinstance(result, MetadataResolution)
     assert {
-        "id", "scheme", "uuid", "target_url", "status",
-        "last_verified_at", "version",
+        "id",
+        "scheme",
+        "uuid",
+        "target_url",
+        "status",
+        "last_verified_at",
+        "version",
     } <= result.data.keys()

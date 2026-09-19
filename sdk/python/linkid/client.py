@@ -30,7 +30,9 @@ from .errors import (
 # Data classes
 # ---------------------------------------------------------------------------
 
-_LINKID_PATTERN = re.compile(r"^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$", re.I)
+_LINKID_PATTERN = re.compile(
+    r"^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$", re.I
+)
 
 
 @dataclass(frozen=True)
@@ -203,7 +205,9 @@ class LinkIdClient:
 
         if self.caching:
             ttl = self._parse_cache_ttl(response.headers.get("cache-control"))
-            self._cache[cache_key] = _CacheEntry(result=result, expires_at=time.monotonic() + ttl)
+            self._cache[cache_key] = _CacheEntry(
+                result=result, expires_at=time.monotonic() + ttl
+            )
 
         return result
 
@@ -233,7 +237,9 @@ class LinkIdClient:
         dict
             Registration result including the newly assigned LinkID.
         """
-        raise ValidationError("Registration is not supported by the public resolve-only v1 SDK")
+        raise ValidationError(
+            "Registration is not supported by the public resolve-only v1 SDK"
+        )
 
         body: Dict[str, Any] = {"targetUri": target_uri}
         if media_type:
@@ -275,7 +281,9 @@ class LinkIdClient:
         metadata:
             New metadata (replaces existing).
         """
-        raise ValidationError("Updates are not supported by the public resolve-only v1 SDK")
+        raise ValidationError(
+            "Updates are not supported by the public resolve-only v1 SDK"
+        )
 
     def withdraw(
         self,
@@ -292,7 +300,9 @@ class LinkIdClient:
         reason:
             Optional human-readable reason.
         """
-        raise ValidationError("Deletion is not supported by the public resolve-only v1 SDK")
+        raise ValidationError(
+            "Deletion is not supported by the public resolve-only v1 SDK"
+        )
 
     def clear_cache(self) -> None:
         """Remove all cached resolution results."""
@@ -315,7 +325,7 @@ class LinkIdClient:
         value = link_id.strip()
         for prefix in ("linkid:", "lid:"):
             if value.lower().startswith(prefix):
-                value = value[len(prefix):]
+                value = value[len(prefix) :]
                 break
         return value.lower()
 
@@ -331,7 +341,9 @@ class LinkIdClient:
     @staticmethod
     def _validate_url(url: str) -> None:
         if not url or not (url.startswith("http://") or url.startswith("https://")):
-            raise ValidationError(f"targetUri must be an absolute HTTP(S) URL, got '{url}'")
+            raise ValidationError(
+                f"targetUri must be an absolute HTTP(S) URL, got '{url}'"
+            )
 
     def _require_api_key(self, operation: str) -> None:
         if not self.api_key:
@@ -373,9 +385,7 @@ class LinkIdClient:
             if attempt < self.retries:
                 time.sleep(2 ** (attempt - 1))
 
-        raise NetworkError(
-            f"Request failed after {self.retries} attempts: {last_exc}"
-        )
+        raise NetworkError(f"Request failed after {self.retries} attempts: {last_exc}")
 
     @staticmethod
     def _is_redirect(status: int) -> bool:
@@ -391,7 +401,9 @@ class LinkIdClient:
         except Exception:
             data = {}
 
-        message = data.get("error") or data.get("message") or f"HTTP {response.status_code}"
+        message = (
+            data.get("error") or data.get("message") or f"HTTP {response.status_code}"
+        )
         lid = link_id or "unknown"
 
         status = response.status_code
