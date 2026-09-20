@@ -1,0 +1,71 @@
+<!doctype html>
+    <html lang="en">
+    <head>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <meta name="description" content="Live LinkID Hover Card Preview and integration example.">
+      <title>LinkID Hover Card Preview</title>
+      <style>
+        :root{color-scheme:light;--ink:#163747;--muted:#587278;--teal:#176b5e;--teal-dark:#123d4d;--mint:#eaf5f2;--line:#c9dfdc;--gold:#d8ab63;--paper:#f4f8f7;--white:#fff}
+        *{box-sizing:border-box}
+        body{margin:0;background:linear-gradient(180deg,#e8f1f2 0,#f4f8f7 30rem);color:var(--ink);font:16px/1.6 system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
+        a{color:var(--teal);text-underline-offset:3px}
+        .shell{width:min(1120px,calc(100% - 32px));margin:auto}
+        .topbar{border-bottom:1px solid var(--line);background:rgba(255,255,255,.8);backdrop-filter:blur(12px)}
+        .topbar .shell{display:flex;align-items:center;justify-content:space-between;min-height:58px;gap:20px}
+        .brand{font-weight:800;letter-spacing:-.02em;text-decoration:none;color:var(--teal-dark)}
+        .topnav{display:flex;gap:18px;font-size:14px;font-weight:650}
+        .hero{position:relative;overflow:hidden;margin-top:28px;border-radius:24px;background:var(--teal-dark);padding:clamp(30px,6vw,68px);color:white;box-shadow:0 26px 70px -38px rgba(18,61,77,.85)}
+        .hero:after{content:"";position:absolute;right:-70px;top:-100px;width:300px;height:300px;border:30px solid rgba(112,179,162,.18);border-radius:50%}
+        .hero>*{position:relative;z-index:1}.eyebrow{font-size:12px;font-weight:800;letter-spacing:.15em;text-transform:uppercase;color:#9fd2c6}
+        h1{max-width:760px;margin:12px 0 14px;font-size:clamp(36px,7vw,66px);line-height:1.02;letter-spacing:-.045em}
+        .lead{max-width:720px;margin:0;color:#c9e0df;font-size:clamp(17px,2vw,20px)}
+        .actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:28px}.button{display:inline-flex;align-items:center;justify-content:center;border-radius:10px;padding:11px 16px;font-weight:750;text-decoration:none}.button.primary{background:var(--gold);color:#193b47}.button.secondary{border:1px solid #81b8b0;color:white}
+        main{padding-bottom:70px}.section{margin-top:34px}.section-head{max-width:760px}.section-head h2{margin:6px 0;font-size:clamp(26px,4vw,38px);letter-spacing:-.03em}.section-head p{margin:0;color:var(--muted)}
+        .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:20px}.sample{position:relative;overflow:visible;border:1px solid var(--line);border-radius:16px;background:var(--white);padding:22px;box-shadow:0 16px 40px -34px rgba(15,59,72,.8)}.sample .tag{display:inline-block;border-radius:999px;background:var(--mint);padding:4px 9px;color:var(--teal);font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:.08em}.sample h3{margin:14px 0 7px;font-size:19px}.sample p{margin:0 0 18px;color:var(--muted);font-size:14px}.sample a{font-weight:750}
+        .install{display:grid;grid-template-columns:1.05fr .95fr;gap:22px;margin-top:20px}.panel{border:1px solid var(--line);border-radius:16px;background:white;padding:22px}.panel h3{margin-top:0}.code{position:relative;border-radius:12px;background:#102f3b;padding:20px;color:#d8ece8;overflow:auto}.code code{white-space:pre-wrap;word-break:break-word}.copy{margin-top:12px;border:0;border-radius:9px;background:var(--teal);padding:9px 13px;color:white;font:inherit;font-weight:700;cursor:pointer}.checklist{margin:0;padding-left:20px;color:var(--muted)}.checklist li+li{margin-top:8px}
+        .note{margin-top:18px;border-left:4px solid var(--gold);border-radius:8px;background:#fff8eb;padding:14px 16px;color:#6d4b24}
+        footer{border-top:1px solid var(--line);padding:24px 0 38px;color:var(--muted);font-size:14px}
+        @media(max-width:800px){.grid,.install{grid-template-columns:1fr}.topnav{display:none}.hero{border-radius:18px}}
+      </style>
+    </head>
+    <body>
+      <header class="topbar"><div class="shell"><a class="brand" href="../">LinkID Specification</a><nav class="topnav" aria-label="Primary"><a href="https://github.com/Link-Genetic-Inc/lid">GitHub</a><a href="https://linkid.linkgenetic.com/developers">Developer Portal</a></nav></div></header>
+      <main class="shell">
+        <section class="hero">
+          <div class="eyebrow">Live website integration</div>
+          <h1>Hover Card Preview</h1>
+          <p class="lead">Move your pointer over one of the links below—or focus it with the keyboard—to see LinkID stability, trust, and metadata when a matching LinkID is available.</p>
+          <div class="actions"><a class="button primary" href="#demo">Try the demo</a><a class="button secondary" href="#install">Copy the script</a></div>
+        </section>
+
+        <section class="section" id="demo">
+          <div class="section-head"><div class="eyebrow" style="color:var(--teal)">Interactive examples</div><h2>Hover over a registered external link</h2><p>The destination stays unchanged. LinkID adds the preview only after a matching LinkID is found.</p></div>
+          <div class="grid">
+            <article class="sample"><span class="tag">Standards</span><h3>WICG Proposal</h3><p>Review the LinkID proposal in the Web Incubator Community Group.</p><a href="https://github.com/WICG/proposals/issues/238">Open the WICG proposal</a></article>
+            <article class="sample"><span class="tag">URI scheme</span><h3>IANA Registration</h3><p>Open the provisional registration for the <code>linkid:</code> URI scheme.</p><a href="https://www.iana.org/assignments/uri-schemes/prov/linkid">Open the IANA record</a></article>
+            <article class="sample"><span class="tag">Research</span><h3>Link Rot Evidence</h3><p>Read Pew Research Center findings on disappearing online content.</p><a href="https://www.pewresearch.org/data-labs/2024/05/17/when-online-content-disappears/">Open the research</a></article>
+          </div>
+          <div class="note"><strong>No card appears?</strong> Hover cards are intentionally shown only for destinations with a registered LinkID. The original link remains fully usable.</div>
+        </section>
+
+        <section class="section" id="install">
+          <div class="section-head"><div class="eyebrow" style="color:var(--teal)">Install once</div><h2>Add Hover Card Preview to your website</h2><p>Place one script tag immediately before the closing <code>&lt;/body&gt;</code> tag. No per-link markup or framework dependency is required.</p></div>
+          <div class="install">
+            <div class="panel"><h3>Production snippet</h3><div class="code"><code id="snippet">&lt;script src="https://linkid.io/embed/linkid-hover.js"&gt;&lt;/script&gt;</code></div><button class="copy" id="copy" type="button">Copy snippet</button><p id="copy-status" role="status" aria-live="polite"></p></div>
+            <div class="panel"><h3>What happens next</h3><ol class="checklist"><li>External HTTP(S) links are discovered automatically.</li><li>Matching LinkIDs receive an interactive preview.</li><li>Preview details load only when the card opens.</li><li>Links added later are detected automatically.</li><li>Destinations are never rewritten by this widget.</li></ol></div>
+          </div>
+        </section>
+      </main>
+      <footer><div class="shell">LinkID Hover Card Preview · <a href="https://linkid.linkgenetic.com/developers#hover-card-guidance">Full developer guidance</a></div></footer>
+      <script src="https://linkid.io/embed/linkid-hover.js"></script>
+      <script>
+        document.getElementById('copy').addEventListener('click', async function(){
+          const value=document.getElementById('snippet').textContent;
+          const status=document.getElementById('copy-status');
+          try{await navigator.clipboard.writeText(value);status.textContent='Snippet copied.';}catch(e){status.textContent='Copy was blocked. Select the snippet manually.';}
+        });
+      </script>
+    </body>
+    </html>
+    
