@@ -25,6 +25,8 @@ Optional configuration:
 
 > GitHub README files do not execute custom JavaScript. Use this embed on websites and web applications that allow third-party scripts.
 
+[Try the live GitHub Pages demo](https://link-genetic-inc.github.io/lid/demo/)
+
 [Open the Hover Card developer guidance](https://linkid.linkgenetic.com/developers#hover-card-guidance)
 
 ## Browser Extensions
