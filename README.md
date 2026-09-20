@@ -88,6 +88,17 @@ System.out.println(result.metadata().get("target_url").asText());
 
 See [`docs/use-cases/`](docs/use-cases/README.md) for the full use case library covering LinkID, LinkManager, and combined deployments across Academia, Libraries, and Government.
 
+## Features
+
+Explore the LinkID integration surfaces:
+
+- **Hover Card Preview** — add stability, trust, and metadata previews to registered external links with one script tag.
+- **Browser Extensions** — create, resolve, check, and explicitly recover LinkIDs in Chrome, Edge, Firefox, and Safari.
+- **Microsoft Office Integration** — use LinkID with Word, Excel, PowerPoint, and Outlook through host-specific add-ins.
+- **SDKs and APIs** — integrate public resolution through JavaScript/TypeScript, Python, Java, REST APIs, and developer tools.
+
+See [LinkID Features](FEATURES.md) for integration examples and product guides.
+
 ## Licensing
 
 This project uses a Triple License model:
@@ -146,4 +157,5 @@ Research shows that link rot is a systemic problem across the Web:
 - [Link Genetic GmbH](https://linkgenetic.com) – Company website
 - [LinkManager](https://linkmanager.linkgenetic.com) – AI-powered broken link detection and repair
 - [LinkID Portal](https://linkid.linkgenetic.com) – LinkID management portal
+- [Developer Portal](https://linkid.linkgenetic.com/developers) – API documentation, SDKs, and integration resources
 - [LinkID Research Publications](https://linkgenetic.com/publications) - Link Genetic Research Publications
