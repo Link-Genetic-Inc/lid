@@ -92,7 +92,7 @@ See [`docs/use-cases/`](docs/use-cases/README.md) for the full use case library 
 
 Explore the LinkID integration surfaces:
 
-- **Hover Card Preview** — add stability, trust, and metadata previews to registered external links with one script tag.
+- **Hover Card Preview** — add stability, trust, and metadata previews to registered external links with one script tag. [Try the live demo](https://link-genetic-inc.github.io/lid/demo/).
 - **Browser Extensions** — create, resolve, check, and explicitly recover LinkIDs in Chrome, Edge, Firefox, and Safari.
 - **Microsoft Office Integration** — use LinkID with Word, Excel, PowerPoint, and Outlook through host-specific add-ins.
 - **SDKs and APIs** — integrate public resolution through JavaScript/TypeScript, Python, Java, REST APIs, and developer tools.
