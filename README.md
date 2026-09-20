@@ -146,4 +146,5 @@ Research shows that link rot is a systemic problem across the Web:
 - [Link Genetic GmbH](https://linkgenetic.com) – Company website
 - [LinkManager](https://linkmanager.linkgenetic.com) – AI-powered broken link detection and repair
 - [LinkID Portal](https://linkid.linkgenetic.com) – LinkID management portal
+- [Developer Portal](https://linkid.linkgenetic.com/developers) – API documentation, SDKs, and integration resources
 - [LinkID Research Publications](https://linkgenetic.com/publications) - Link Genetic Research Publications
