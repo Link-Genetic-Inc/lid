@@ -4,8 +4,13 @@
 [![IANA URI Scheme](https://img.shields.io/badge/IANA-linkid%3A%20URI%20Scheme-orange)](https://www.iana.org/assignments/uri-schemes/prov/linkid)
 [![License: LCL](https://img.shields.io/badge/License-LCL%20v1.0-green)](LICENSE)
 [![CI](https://github.com/Link-Genetic-Inc/lid/actions/workflows/ci.yml/badge.svg)](https://github.com/Link-Genetic-Inc/lid/actions/workflows/ci.yml)
+[![Live Demo](https://img.shields.io/badge/Live-Hover%20Card%20Demo-176b5e)](https://link-genetic-inc.github.io/lid/demo/)
 
 LinkID is a persistent identifier system that decouples the identity of a hyperlink from the physical address of its target resource. It solves both **Link Rot** (broken links) and **Content Drift** (changed content at same URL).
+
+## Live Hover Card Demo
+
+**[Open the interactive LinkID Hover Card Demo](https://link-genetic-inc.github.io/lid/demo/)** to see stability, trust, and metadata previews on registered external links. The page also includes the copy-ready website integration script.
 
 ## How It Works
 
