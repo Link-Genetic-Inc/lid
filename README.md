@@ -2,7 +2,7 @@
 
 [![W3C Community Group](https://img.shields.io/badge/W3C-Community%20Group-blue)](https://github.com/WICG/proposals/issues/238)
 [![IANA URI Scheme](https://img.shields.io/badge/IANA-linkid%3A%20URI%20Scheme-orange)](https://www.iana.org/assignments/uri-schemes/prov/linkid)
-[![License: LCL](https://img.shields.io/badge/License-LCL%20v1.0-green)](LICENSE)
+[![License: Apache-2.0](https://img.shields.io/badge/License-Apache--2.0-green)](LICENSE)
 [![CI](https://github.com/Link-Genetic-Inc/lid/actions/workflows/ci.yml/badge.svg)](https://github.com/Link-Genetic-Inc/lid/actions/workflows/ci.yml)
 [![Live Demo](https://img.shields.io/badge/Live-Hover%20Card%20Demo-176b5e)](https://link-genetic-inc.github.io/lid/demo/)
 
@@ -106,17 +106,10 @@ See [LinkID Features](FEATURES.md) for integration examples and product guides.
 
 ## Licensing
 
-This project uses a Triple License model:
+Licensed under Apache-2.0 (see LICENSE). Patent rights for implementations of the LinkID specification: see PATENTS.md.
 
-| License | For | Cost |
-|---------|-----|------|
-| **LCL** (Community License) | Non-commercial use, evaluation, research | Free |
-| **LPIL** (Public Interest License) | Universities, libraries, government, NGOs | Free |
-| **LEL** (Enterprise License) | Commercial use | [Contact us](mailto:licensing@linkgenetic.com) |
-
-The repository root remains under LCL. The client SDK source in `sdk/js`,
-`sdk/python`, and `sdk/java` is separately licensed under Apache-2.0 and each
-SDK includes its own license file. Version 1.0.1 is publicly available from
+Each client SDK in `sdk/js`, `sdk/python`, and `sdk/java` includes its own
+Apache-2.0 license file. Version 1.0.1 is publicly available from
 [npm](https://www.npmjs.com/package/@linkgenetic/client),
 [PyPI](https://pypi.org/project/linkid-client/), and
 [Maven Central](https://central.sonatype.com/artifact/com.linkgenetic/linkid-client/1.0.1).
@@ -136,12 +129,12 @@ Contributions are welcome for:
 
 ## Patent Notice
 
-LinkID technology is protected by patent application CH P220889 and international applications derived therefrom. Use of the client SDK libraries does not require a patent license. For details on patent licensing, see our [licensing page](https://linkgenetic.com/licenses).
+Patent rights for implementations of the LinkID specification are addressed in [PATENTS.md](PATENTS.md).
 
 ## Specifications
 
 - [W3C LinkID Specification](spec/index.html)
-- [IETF Internet-Draft: LinkID URI Scheme](draft/draft-linkgenetic-linkid-uri-00.md)
+- [IETF Internet-Draft: LinkID URI Scheme (-01)](spec/draft-linkgenetic-linkid-uri-01.md)
 - [IANA `linkid:` URI Scheme Registration](https://www.iana.org/assignments/uri-schemes/prov/linkid)
 
 ## Standards Activity
