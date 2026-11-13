@@ -1,10 +1,9 @@
 """Unit tests for the LinkID Python client SDK."""
 
+from unittest import TestCase
 from unittest.mock import patch
 
 import httpx
-import pytest
-
 from linkid.client import LinkIdClient, MetadataResolution, RedirectResolution
 from linkid.errors import ErrorCode, LinkIdError, NotFoundError, ValidationError
 
@@ -14,18 +13,18 @@ VALID_RAW_ID = "7e96f229-21c3-4a3d-a6cf-ef7d8dd70f24"
 INVALID_ID = "not-a-linkid"
 
 
-class TestLinkIdClient:
-    def setup_method(self):
+class TestLinkIdClient(TestCase):
+    def setUp(self):
         self.client = LinkIdClient(resolver=RESOLVER)
 
-    def teardown_method(self):
+    def tearDown(self):
         self.client.close()
 
     def test_constructor_sets_resolver(self):
         assert self.client.resolver == RESOLVER
 
     def test_resolve_raises_on_invalid_id(self):
-        with pytest.raises(ValidationError):
+        with self.assertRaises(ValidationError):
             self.client.resolve(INVALID_ID)
 
     def test_resolve_returns_redirect_on_3xx(self):
@@ -69,22 +68,22 @@ class TestLinkIdClient:
         )
 
         with patch.object(self.client._http, "request", return_value=mock_response):
-            with pytest.raises(NotFoundError) as exc_info:
+            with self.assertRaises(NotFoundError) as exc_info:
                 self.client.resolve(VALID_ID)
-            assert exc_info.value.code == ErrorCode.NOT_FOUND
+            assert exc_info.exception.code == ErrorCode.NOT_FOUND
 
     def test_register_is_explicitly_unsupported(self):
-        with pytest.raises(ValidationError, match="not supported"):
+        with self.assertRaisesRegex(ValidationError, "not supported"):
             self.client.register("https://example.com/doc.pdf")
 
     def test_register_validates_target_uri(self):
         client = LinkIdClient(resolver=RESOLVER, api_key="test-key")
-        with pytest.raises(ValidationError, match="not supported"):
+        with self.assertRaisesRegex(ValidationError, "not supported"):
             client.register("not-a-url")
         client.close()
 
 
-class TestLinkIdError:
+class TestLinkIdError(TestCase):
     def test_has_error_code(self):
         err = LinkIdError("not found", ErrorCode.NOT_FOUND)
         assert err.code == ErrorCode.NOT_FOUND

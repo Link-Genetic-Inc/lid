@@ -39,9 +39,16 @@ jobs:
           test "$java_version" = "$version"
           echo "Validated $RELEASE_TAG across all three SDKs."
 
+  checks:
+    name: Validate exact release source before publishing
+    needs: preflight
+    uses: ./.github/workflows/ci.yml
+    with:
+      ref: ${{ inputs.release_tag || github.ref_name }}
+
   release-js:
     name: Publish JS SDK to npm
-    needs: preflight
+    needs: [preflight, checks]
     runs-on: ubuntu-latest
     defaults:
       run:
@@ -62,7 +69,7 @@ jobs:
 
   release-python:
     name: Publish Python SDK to PyPI
-    needs: preflight
+    needs: [preflight, checks]
     runs-on: ubuntu-latest
     defaults:
       run:
@@ -86,7 +93,7 @@ jobs:
 
   release-java:
     name: Publish Java SDK to Maven Central
-    needs: preflight
+    needs: [preflight, checks]
     runs-on: ubuntu-latest
     defaults:
       run:

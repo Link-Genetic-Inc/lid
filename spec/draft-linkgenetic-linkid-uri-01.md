@@ -5,13 +5,13 @@ Internet-Draft:
 draft-linkgenetic-linkid-uri-01
 
 Published:  
-6 October 2026
+8 October 2026
 
 Intended Status:  
 Standards Track
 
 Expires:  
-9 April 2027
+11 April 2027
 
 Author:  
 C. Nyffenegger
@@ -30,6 +30,14 @@ This note is to be removed before publishing as an RFC.
 
 This is an individual submission. Discussion takes place on the DISPATCH mailing list (dispatch@ietf.org). Source and issue tracking: <https://github.com/Link-Genetic-Inc/lid>.
 
+**Repository working copy:** The submitted revision -01 is dated 8 October 2026
+and expires on 11 April 2027. The official submitted text is available from the
+[IETF Datatracker](https://datatracker.ietf.org/doc/draft-linkgenetic-linkid-uri/01/).
+This editable copy includes subsequent clarifications of HTTP error handling and
+implementation status; it is not an immutable copy of the submitted document.
+Neither this document nor the DISPATCH presentation constitutes IETF endorsement
+or Working Group adoption.
+
 ## Status of This Memo
 
 This Internet-Draft is submitted in full conformance with the provisions of BCP 78 and BCP 79.
@@ -38,7 +46,7 @@ Internet-Drafts are working documents of the Internet Engineering Task Force (IE
 
 Internet-Drafts are draft documents valid for a maximum of six months and may be updated, replaced, or obsoleted by other documents at any time. It is inappropriate to use Internet-Drafts as reference material or to cite them other than as "work in progress."
 
-This Internet-Draft will expire on 9 April 2027.
+The submitted Internet-Draft expires on 11 April 2027.
 
 ## Copyright Notice
 

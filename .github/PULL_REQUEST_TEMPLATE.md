@@ -16,7 +16,7 @@
 
 ## Checklist
 
-- [ ] I have signed the [Contributor License Agreement (CLA)](../CLA.md)
+- [ ] I have signed the [Contributor License Agreement (CLA)](https://github.com/Link-Genetic-Inc/lid/blob/main/.github/CLA.md)
 - [ ] My code follows the existing code style
 - [ ] I have added/updated tests where applicable
 - [ ] All existing tests pass

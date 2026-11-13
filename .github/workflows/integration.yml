@@ -1,9 +1,7 @@
 name: Integration Tests
 
 on:
-  # schedule disabled — tests are stale and failing daily (LINKID-116)
-  # schedule:
-  #   - cron: '0 6 * * *'
+  # Deliberately opt-in: public read-only resolver checks, not scheduled writes.
   workflow_dispatch:
     inputs:
       resolver_url:

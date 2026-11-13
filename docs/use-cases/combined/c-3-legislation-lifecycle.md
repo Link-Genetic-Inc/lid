@@ -33,7 +33,10 @@ Every external reference in newly drafted legislation is assigned a `linkid:` id
 </ref>
 ```
 
-The resolver guarantees that this reference remains accessible throughout the law's lifetime — automatically redirecting to the current location of the document, or to a verified archived copy.
+The resolver can maintain this reference throughout the law's lifetime by
+resolving to the authorized current location or an available, verified archived
+copy. Continued availability depends on stewardship, retention and access
+policies; neither the identifier nor a redirect guarantees it.
 
 ### Existing Legislation (LinkManager)
 

@@ -9,9 +9,10 @@
 
 The **LinkID Persistent Identifier** is designed to become an **open,
 interoperable, and community-driven standard** for resilient hyperlinks.
-Our objective is to ensure that every digital reference — whether on a
-website, in a document, or in an archive — remains **valid, traceable,
-and semantically resolvable** forever.
+Our objective is long-term **traceability and maintained resolution** for
+references on websites, in documents and in archives. Persistence requires
+ongoing stewardship, available targets and authorized mapping changes; it is
+not a guarantee that every destination will remain available forever.
 
 ---
 
@@ -21,7 +22,7 @@ and semantically resolvable** forever.
 |-----------|--------|-------------|
 | **Core Specification** | Open | `linkid:` namespace definition, resolution algorithm, metadata schema |
 | **Client SDK Libraries** | Open | JavaScript/TypeScript, Python, Java client libraries |
-| **Conformance Tests** | Open | Test suite for resolver interoperability |
+| **Contract Tests** | Open | Isolated tests for the public resolve-only SDK contract; not certification of federation |
 | **IETF Internet-Draft** | Open | URI scheme definition |
 | **Server Implementations** | Licensed | Available under Enterprise License (LEL) or Public Interest License (LPIL) |
 | **Advanced Resolver (AI)** | Licensed | AI-based semantic repair and analytics engine |
@@ -32,13 +33,19 @@ and semantically resolvable** forever.
 
 ## License
 
-The repository root uses the **Link Genetic Community License (LCL) v1.0**.
-The three client SDK directories are independently licensed under Apache-2.0
-and include per-SDK license files. The SDK packages are not yet published.
+The repository root and all three client SDKs use **Apache-2.0**; each SDK also
+includes its license file. SDK **1.0.1** is published on npm, PyPI and Maven
+Central. The public SDKs provide unauthenticated resolution, not minting,
+editing or deletion.
 
-- **Non-commercial use** (research, evaluation, personal projects): Free
-- **Public interest use** (universities, libraries, government, NGOs): Free under LPIL
-- **Commercial use**: Requires Enterprise License (LEL)
+- Apache-2.0 permits use of the covered repository code in non-commercial,
+  public-interest and commercial projects, subject to its terms.
+- Link Genetic's proprietary hosted platform and server code are not included
+  in this repository. Enterprise (LEL) and Public Interest (LPIL) licensing
+  concern separately supplied products and agreements, not an additional
+  restriction on Apache-2.0 repository code.
+- Earlier descriptions of LCL / triple licensing are historical and do not
+  replace the current `LICENSE` or `PATENTS.md`.
 
 For full license terms, see the [LICENSE](../LICENSE) file.
 
@@ -58,10 +65,12 @@ conformance tests, and specification editorial improvements.
 
 ## Patent Notice
 
-LinkID technology is protected by patent application CH P220889 and
-international applications derived therefrom. Use of the client SDK
-libraries does not require a patent license. Server-side implementations
-require appropriate licensing.
+Patent application **CH P220889** is an application, not a statement that a
+patent has been granted. The existing [Patent Promise](../PATENTS.md) applies
+to Necessary Claims for implementations of its explicitly Covered
+Specifications, including open-source and commercial implementations, under
+the Promise's terms. It does not license the proprietary platform or unrelated
+features. No licensing or patent grant is changed by this documentation update.
 
 For details: https://linkgenetic.com/licenses
 
@@ -69,8 +78,10 @@ For details: https://linkgenetic.com/licenses
 
 ## Reference Documents
 
-- [W3C LinkID Specification](../spec/index.html)
-- [IETF Internet-Draft: LinkID URI Scheme](../draft/draft-linkgenetic-linkid-uri-00.md)
+- [Independent LinkID architecture notes](../spec/index.html)
+- [Official IETF Internet-Draft (-01)](https://datatracker.ietf.org/doc/draft-linkgenetic-linkid-uri/01/)
+- [Editable URI draft working copy](../spec/draft-linkgenetic-linkid-uri-01.md)
+- [Historical revision -00](../draft/draft-linkgenetic-linkid-uri-00.md)
 - [Namespace Registration (IANA linkid)](https://www.iana.org/assignments/uri-schemes/prov/linkid)
 
 ---

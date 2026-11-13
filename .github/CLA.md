@@ -63,7 +63,10 @@ To sign this CLA, comment on your pull request with:
 I have read the CLA Document and I hereby sign the CLA
 ```
 
-The CLA bot will automatically record your signature.
+While the CLA Assistant workflow is disabled, a maintainer reviews the signing
+comment, verifies the GitHub identity and records the comment URL in the PR
+review before merge. When explicitly re-enabled, the bot may record signatures
+automatically. This operational note does not change the agreement above.
 
 ---
 

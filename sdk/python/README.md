@@ -25,7 +25,10 @@ print(result.data)
 
 ## Requirements
 
-- Python 3.9+
+- Current maintenance CI targets supported Python 3.11–3.15.
+- Published 1.0.1 metadata accepts Python 3.9+, but Python 3.9 and 3.10 are
+  end-of-life. Use a supported Python release for new deployments.
+- Maintenance changes are unreleased; the published SDK remains 1.0.1.
 
 ## Development
 

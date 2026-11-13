@@ -1,12 +1,12 @@
 # LinkID – Persistent Identifiers for the Web
 
-[![W3C Community Group](https://img.shields.io/badge/W3C-Community%20Group-blue)](https://github.com/WICG/proposals/issues/238)
+[![WICG Proposal](https://img.shields.io/badge/WICG-Proposal-blue)](https://github.com/WICG/proposals/issues/238)
 [![IANA URI Scheme](https://img.shields.io/badge/IANA-linkid%3A%20URI%20Scheme-orange)](https://www.iana.org/assignments/uri-schemes/prov/linkid)
 [![License: Apache-2.0](https://img.shields.io/badge/License-Apache--2.0-green)](LICENSE)
 [![CI](https://github.com/Link-Genetic-Inc/lid/actions/workflows/ci.yml/badge.svg)](https://github.com/Link-Genetic-Inc/lid/actions/workflows/ci.yml)
 [![Live Demo](https://img.shields.io/badge/Live-Hover%20Card%20Demo-176b5e)](https://link-genetic-inc.github.io/lid/demo/)
 
-LinkID is a persistent identifier system that decouples the identity of a hyperlink from the physical address of its target resource. It solves both **Link Rot** (broken links) and **Content Drift** (changed content at same URL).
+LinkID is a persistent identifier system that decouples the identity of a hyperlink from the physical address of its target resource. It addresses **Link Rot** (broken links) and supports detection of **Content Drift** (changed content at the same URL). Continued resolution depends on maintained mappings, available destinations and authorized recovery; an identifier alone cannot guarantee availability or authenticity.
 
 ## Live Hover Card Demo
 
@@ -18,7 +18,7 @@ Traditional hyperlinks break when URLs change. LinkID assigns each hyperlink rel
 
 ```
 Traditional:  Document → URL → Resource (breaks when URL changes)
-LinkID:       Document → LinkID → Resolver → Current Resource (always works)
+LinkID:       Document → LinkID → Resolver → Authorized current target or explicit status
 ```
 
 ## Repository Structure
@@ -29,8 +29,8 @@ lid/
 │   ├── js/           # JavaScript/TypeScript – npm: @linkgenetic/client
 │   ├── python/       # Python – pip: linkid-client
 │   └── java/         # Java – Maven: com.linkgenetic:linkid-client
-├── spec/             # W3C Specification
-├── draft/            # IETF Internet-Draft (URI scheme)
+├── spec/             # Current URI draft, architecture notes and live website demo
+├── draft/            # Historical Internet-Draft revision -00
 ├── docs/             # Contributing guidelines, Code of Conduct
 └── tests/            # Conformance tests
 ```
@@ -48,7 +48,9 @@ import { LinkIDClient } from '@linkgenetic/client';
 
 const client = new LinkIDClient({ resolverUrl: 'https://linkid.io' });
 const result = await client.resolve('linkid:7e96f229-21c3-4a3d-a6cf-ef7d8dd70f24');
-console.log(result.data.target_url); // current location of the resource
+if (result.type === 'metadata') {
+  console.log(result.data); // public response includes target_url
+}
 ```
 
 ### Python
@@ -85,7 +87,7 @@ System.out.println(result.metadata().get("target_url").asText());
 ## Use Cases
 
 - **Enterprise documents** – Embed LinkIDs in PDF, Word, and other documents. Links survive server migrations, domain changes, and content restructuring.
-- **Web publishing** – Replace fragile URLs with persistent LinkIDs. Readers always reach the current version of referenced content.
+- **Web publishing** – Replace fragile URLs with persistent LinkIDs. Maintained mappings can direct readers to the authorized current version of referenced content.
 - **Archives and libraries** – Maintain long-term reference integrity with time-aware resolution and archived versions.
 - **QR codes and print media** – LinkIDs in printed materials resolve to current resources even years after publication.
 - **API integrations** – Register and manage LinkIDs programmatically via REST API.
@@ -133,16 +135,23 @@ Patent rights for implementations of the LinkID specification are addressed in [
 
 ## Specifications
 
-- [W3C LinkID Specification](spec/index.html)
-- [IETF Internet-Draft: LinkID URI Scheme (-01)](spec/draft-linkgenetic-linkid-uri-01.md)
+- [LinkID architecture notes](https://link-genetic-inc.github.io/lid/) — independent, non-normative proposals; not a W3C standard
+- [Official submitted IETF Internet-Draft (-01)](https://datatracker.ietf.org/doc/draft-linkgenetic-linkid-uri/01/)
+- [Editable URI draft working copy](spec/draft-linkgenetic-linkid-uri-01.md) — includes post-submission clarifications
 - [IANA `linkid:` URI Scheme Registration](https://www.iana.org/assignments/uri-schemes/prov/linkid)
 
 ## Standards Activity
 
+- **[IETF 127 — San Francisco, 14–20 November 2026](https://www.ietf.org/meeting/127/)** — [DISPATCH agenda](https://datatracker.ietf.org/meeting/127/materials/agenda-127-dispatch-00): *The LinkID URI Scheme and Resolution Model*, Christian Nyffenegger (remote). The session is **16 November, 09:00–11:00 PST / 18:00–20:00 CET**; this is the session window, not an individual presentation start time. [LinkID presentation resources](https://linkid.linkgenetic.com/ietf-127).
 - [WICG Proposal: LinkID](https://github.com/WICG/proposals/issues/238) – Web Incubator Community Group proposal
 - [TPAC 2025 Breakout Session](https://www.w3.org/events/meetings/ef18fde3-f3f0-498a-addf-d47f33716014/) – LinkID presentation at W3C TPAC 2025, Kobe
 - [TPAC 2025 Session Proposal](https://github.com/w3c/tpac2025-breakouts/issues/83) – Original session proposal and discussion
 - [Wikimedia Hackathon 2026](Wikimedia%20Hackathon%202026/README.md) – Improving Wikipedia Reference Integrity with Persistent LinkIDs · Milan, May 1–3 2026 · [⚓ T422252](https://phabricator.wikimedia.org/T422252)
+
+The IETF document is an **individual Internet-Draft**, not an RFC or an adopted
+Working Group specification. The WICG proposal, TPAC presentation and provisional
+IANA registration do not establish W3C or IETF endorsement. IETF participation
+does not change the scope of the URI proposal.
 
 ## Why LinkID? The Broken Links Problem
 

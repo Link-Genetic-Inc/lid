@@ -30,7 +30,8 @@ System.out.println(result.metadata().get("target_url").asText());
 
 ## Requirements
 
-- JDK 17 or 21
+- JDK 17+; maintenance CI targets the LTS releases 17, 21 and 25.
+- Maintenance changes are unreleased; the published SDK remains 1.0.1.
 
 ## Development
 

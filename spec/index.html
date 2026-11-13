@@ -2,25 +2,12 @@
 <html lang="en">
 <head>
   <meta charset="utf-8"/>
-  <title>LinkID — Persistent, Never‑Break Identifiers for the Web</title>
+  <title>LinkID — Persistent Identifiers for the Web</title>
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
-  <script src="https://www.w3.org/Tools/respec/respec-w3c" class="remove"></script>
-  <script class="remove">
-    const respecConfig = {
-      specStatus: "CG-DRAFT", // Community Group draft while incubating
-      shortName: "linkid",
-      editors: [
-        { name: "Link Genetic GmbH", url: "https://linkgenetic.com/" }
-      ],
-      github: "https://github.com/linkgenetic/linkid-spec",
-      edDraftURI: "https://linkgenetic.github.io/linkid-spec/",
-      license: "w3c-software-doc",
-      xref: true,
-      group: "linkid",
-      lint: {"no-unused-dfns": false}
-    };
-  </script>
   <style>
+    body { max-width: 75rem; margin: auto; padding: 1.5rem; font: 1rem/1.6 system-ui, sans-serif; color: #163747; overflow-wrap: anywhere }
+    h1, h2, h3 { line-height: 1.25 }
+    pre { overflow-x: auto; padding: 1rem; background: #f4f7f6 }
     pre.algorithm { background: #f7f7f7; padding: 1rem; border-radius: 8px; overflow:auto }
     code { white-space: pre-wrap; }
     .issue { border-left: 4px solid #d00; padding-left: .6rem; }
@@ -28,23 +15,70 @@
   </style>
 </head>
 <body>
+  <header>
+    <h1>LinkID — Persistent Identifiers for the Web</h1>
+    <p>Independent architecture notes, maintained by Link Genetic GmbH.
+      Reviewed 13 November 2026. Not a W3C Recommendation or adopted IETF specification.</p>
+    <p><a href="https://github.com/Link-Genetic-Inc/lid">Repository</a> ·
+      <a href="https://github.com/Link-Genetic-Inc/lid/blob/main/LICENSE">Apache-2.0</a> ·
+      <a href="https://github.com/Link-Genetic-Inc/lid/blob/main/PATENTS.md">Existing Patent Promise</a></p>
+  </header>
   <section id="abstract">
-    <p><dfn data-lt="LinkID">LinkID</dfn> defines a persistent identifier and resolution mechanism for Web resources that remain stable even when the underlying locations change. It specifies identifier syntax, a resolver algorithm, metadata, caching semantics, and security and privacy requirements. LinkID can be expressed as an HTTP URI namespace (<code>https://w3id.org/linkid/&lt;id&gt;</code>) and, if standardized in the IETF, an optional <code>lid:</code> URI scheme.</p>
-    <p class="note"><strong>Status note (2026-10-08):</strong> For the URI scheme and identifier syntax, <a href="draft-linkgenetic-linkid-uri-01.md">draft-linkgenetic-linkid-uri-01</a> is authoritative. The registered scheme is 'linkid:' followed by a lowercase hyphenated UUID (linkid:xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx). References in this document to a 'lid:' scheme and to 32-character identifiers without hyphens are superseded and will be aligned in a future revision.</p>
+    <h2>Overview</h2>
+    <p><dfn data-lt="LinkID">LinkID</dfn> separates persistent identity from mutable
+      target addresses. Maintained mappings and authorized updates support continuity;
+      an identifier alone does not guarantee target availability, authenticity or authorship.</p>
+    <p class="note"><strong>Current URI proposal:</strong>
+      <a href="https://datatracker.ietf.org/doc/draft-linkgenetic-linkid-uri/01/">the
+      official individual Internet-Draft -01, dated 8 October 2026</a>, specifies
+      <code>linkid:</code> followed by a hyphenated UUID. New allocations use UUIDv4.
+      The <a href="https://www.iana.org/assignments/uri-schemes/prov/linkid">existing
+      provisional IANA registration</a> has broader historical syntax; updating it
+      is a separate process, not an approval already granted.</p>
   </section>
 
   <section id="sotd">
-    <p>This Editor’s Draft is incubated in a Community Group and is not a W3C Recommendation. The design may change at any time. Implementors are encouraged to experiment and provide feedback.</p>
+    <h2>Status</h2>
+    <p>The <a href="https://github.com/WICG/proposals/issues/238">WICG proposal</a>
+      is a discussion venue, not proof of an established LinkID Community Group.
+      Earlier architecture proposals below remain visible for historical context,
+      not as implemented API promises or current interoperability requirements.</p>
   </section>
 
 <section>
     <h2>Companion Documents</h2>
     <ul>
-      <li><a href="draft-linkgenetic-linkid-uri-01.md">IETF Internet-Draft: LinkID URI Scheme</a></li>
+      <li><a href="draft-linkgenetic-linkid-uri-01.md">Editable URI draft working copy (includes post-submission clarifications)</a></li>
+      <li><a href="https://datatracker.ietf.org/meeting/127/materials/agenda-127-dispatch-00">IETF 127 DISPATCH agenda — 16 November 2026, 09:00–11:00 PST / 18:00–20:00 CET</a></li>
       <li><a href="demo/">Live LinkID Hover Card Preview</a></li>
     </ul>
   </section>
 
+  <section id="current-public-profile">
+    <h2>Current public resolution profile</h2>
+    <pre><code>Identity: linkid:00c538ea-846b-47a6-a3d4-70a9ebd29d7c
+GET https://linkid.io/api/public/resolve/00c538ea-846b-47a6-a3d4-70a9ebd29d7c
+Accept: application/json</code></pre>
+    <p>This UUID is a syntax example, not a claim that a corresponding public record exists.
+      Successful public responses include <code>id</code>, <code>status</code> and
+      <code>target_url</code>, with implementation-specific metadata. Distinguish
+      unknown identifiers from known records without a reachable or permitted target.
+      Browser redirect routes are separate. The published SDKs are resolve-only.</p>
+    <p>Detection and proposals do not authorize a mapping update. Repair requires
+      the applicable creator/governance approval. Reachability, a signature,
+      content binding and authorship are separate evidence questions.</p>
+    <p><a href="https://github.com/Link-Genetic-Inc/lid/blob/main/tests/README.md">Tests and coverage limits</a>.
+      Discovery, extended metadata, federation, webhooks and semantic repair below
+      are architecture proposals, not features certified by the public SDK tests.</p>
+  </section>
+
+  <section id="legacy-design-notes">
+    <h2>Earlier architecture proposals — historical and non-normative</h2>
+    <p class="note">The following original design notes are retained, including
+      legacy syntax, proposed APIs and governance ideas. Their MUST/SHOULD wording
+      and examples do not override the current URI proposal or the documented public API.
+      No deployment of the example w3id.org namespace or independent resolver federation
+      is asserted.</p>
   <section>
     <h2>Goals and Non‑Goals</h2>
     <ul>
@@ -152,7 +186,7 @@ lid:{id}?q=...
       </ul>
     </section>
     <section>
-      <h3>Algorithm (Normative)</h3>
+      <h3>Proposed extended algorithm (historical, non-normative)</h3>
       <p>The following algorithm is normative. Pseudocode is illustrative.</p>
       <pre class="algorithm"><code>Given: LinkID L, HTTP request R
 Result: A redirect to the best current resource, or a JSON description
@@ -476,6 +510,7 @@ Accept: application/linkid+json
       <li>2025‑09‑16: Initial Editor’s Draft skeleton with normative resolution algorithm.</li>
       <li>2025‑10‑07: Expanded standardization details, extended HTTP API + webhooks, repository/tracking integration, and examples.</li>
     </ul>
+  </section>
   </section>
 </body>
 </html>

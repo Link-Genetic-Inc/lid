@@ -4,14 +4,20 @@ Thank you for your interest in contributing! This guide covers everything you ne
 
 ---
 
-## 1. Sign the CLA (automated — takes 30 seconds)
+## 1. Sign the CLA
 
-All contributors must sign our [Contributor License Agreement](../.github/CLA.md) before their first PR is merged. The process is fully automated:
+All contributors must sign our [Contributor License Agreement](../.github/CLA.md) before their first PR is merged. The signing declaration is unchanged:
 
 1. Open a pull request
-2. The CLA bot posts a comment automatically
+2. Read the CLA linked above
 3. Reply with exactly: `I have read the CLA Document and I hereby sign the CLA`
-4. Done — the bot records your signature. You never need to do this again.
+4. A maintainer verifies the GitHub identity and declaration and records the PR comment URL in the review before merge.
+
+The CLA Assistant workflow was observed manually disabled on 13 November 2026.
+Do not assume an automated comment or status check will appear. Maintainers must
+check existing signatures in `.github/cla-signatures.json` and the PR record;
+absence of a bot check is not a waiver. Re-enabling the workflow and configuring
+its credentials requires a separate repository-administrator decision.
 
 > ℹ️ No email, no PDF, no manual process. The bot handles everything.
 
@@ -77,7 +83,7 @@ mvn verify
 2. Write tests for your changes
 3. Ensure all CI checks pass locally
 4. Update `CHANGELOG.md` under `[Unreleased]`
-5. Open a PR — the CLA bot will check your signature automatically
+5. Open a PR — a maintainer checks your CLA signature and the required CI results before merge
 6. A maintainer reviews within **7 working days**
 
 ---
