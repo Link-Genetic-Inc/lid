@@ -1,7 +1,9 @@
 # Explainer: LinkID – Persistent, Never-Break Identifiers for the Web
 
 **Authors**: Link Genetic GmbH
-**Status**: Draft for Community Group discussion
+**Status**: Independent proposal for community discussion, not a W3C standard.
+The current submitted URI proposal is
+[draft-linkgenetic-linkid-uri-01](https://datatracker.ietf.org/doc/draft-linkgenetic-linkid-uri/01/).
 
 ---
 
@@ -16,7 +18,7 @@ Existing persistent identifier systems (e.g., DOI, Handle, ARK) address some of 
 
 ## Goals
 
-* Provide a **universal, Web-native identifier** that guarantees resolution even if the original resource moves or changes.
+* Provide a **persistent identifier** whose maintained, authorized mapping can survive URL changes; no identifier guarantees that a resource remains available.
 * Offer a **simple syntax** (e.g., `linkid:` scheme or HTTP-based `https://w3id.org/linkid/...`).
 * Enable **resolvers** that map stable identifiers to current destinations using open, semantic, and AI-supported methods.
 * Ensure compatibility with existing Web infrastructure (HTTP, DNS, browsers, archives).
@@ -36,12 +38,17 @@ Existing persistent identifier systems (e.g., DOI, Handle, ARK) address some of 
 
 * **Identifier Syntax**:
 
-  * Option A: new URI scheme `linkid:<UUID or hash>`
-  * Option B: HTTP namespace `https://w3id.org/linkid/<UUID>`
+  * Current URI proposal: `linkid:<hyphenated UUID>`, with UUIDv4 for new allocations.
+  * An HTTPS resolver URL is an access mechanism, not a second identifier.
+  * Earlier hash and `w3id.org` namespace options are historical design ideas,
+    not the current URI contract or an announced w3id.org deployment.
 * **Resolver Module**:
 
-  * Takes a `LinkID` and redirects (301/302) to the current target resource.
-  * Uses semantic/AI-assisted rules to update mappings when sources move.
+  * The public SDK contract is JSON from `GET /api/public/resolve/{uuid}`.
+    Separate browser routes may redirect to a target.
+  * Detection and repair proposals are separate from approval and mapping
+    updates. A change requires the applicable creator/governance authority;
+    automated detection is not automatic permission to repair.
   * Maintains audit trails and optional CO₂-impact data.
 * **Ecosystem Components**:
 
@@ -54,7 +61,7 @@ Existing persistent identifier systems (e.g., DOI, Handle, ARK) address some of 
 ## Security & Privacy Considerations
 
 * **Data minimization**: identifiers carry no personal information.
-* **Integrity**: mappings cryptographically signed to prevent tampering.
+* **Integrity**: verify applicable signatures and expected trust roots; a reachable URL or valid signature alone does not establish authorship or truth. An interoperable signature profile remains separate work.
 * **Abuse prevention**: resolvers must handle malicious redirects, phishing attempts, and provide safe-browsing checks.
 * **Long-term trust**: governance under open standards with clear patent licensing terms.
 

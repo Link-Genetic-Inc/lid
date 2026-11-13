@@ -26,7 +26,10 @@ console.log(result.data); // id, scheme, uuid, target_url, status, last_verified
 
 ## Requirements
 
-- Node.js 18, 20, or 22
+- Current maintenance CI targets Node.js 22, 24 and 26 LTS.
+- Published 1.0.1 metadata accepts Node.js 18+, but Node.js 18 and 20 are
+  end-of-life and are not recommended or covered by the refreshed CI.
+- Maintenance changes are unreleased; they do not replace the immutable 1.0.1 package.
 
 ## License
 

@@ -26,6 +26,8 @@
         <maven.compiler.source>17</maven.compiler.source>
         <maven.compiler.target>17</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <!-- Reproducible ZIP/Javadoc timestamp; the ZIP epoch requires at least two seconds. -->
+        <project.build.outputTimestamp>2000-01-01T00:00:02Z</project.build.outputTimestamp>
         <jackson.version>2.22.3</jackson.version>
     </properties>
 

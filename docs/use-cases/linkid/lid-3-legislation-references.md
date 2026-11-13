@@ -38,7 +38,9 @@ Each external reference in a legislative document is assigned a `linkid:` identi
 </ref>
 ```
 
-The resolver guarantees that the reference remains accessible — to the original document if available, or to a verified archived copy otherwise.
+The resolver can maintain access to the original document or an available,
+verified archived copy under the applicable authority and retention policy.
+The identifier does not itself guarantee continued availability.
 
 ---
 
