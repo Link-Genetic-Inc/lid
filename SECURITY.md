@@ -1,7 +1,11 @@
 # Security Policy — Link Genetic GmbH
 
-> **Version 1.0 · March 2026**  
+> **Version 1.1 · Dated 8 November 2026**
+>
 > Contact: [security@linkgenetic.com](mailto:security@linkgenetic.com)
+>
+> Effective upon publication of this version, not before 8 November 2026.
+> No automatic retroactive application. See [version history and earlier commitments](#3-policy-version-history--earlier-commitments).
 
 ---
 
@@ -20,6 +24,7 @@
    - [Eligibility](#24-eligibility)
    - [Submission Process](#25-submission-process)
    - [Legal & Confidentiality](#26-legal--confidentiality)
+3. [Policy Version History & Earlier Commitments](#3-policy-version-history--earlier-commitments)
 
 ---
 
@@ -59,6 +64,17 @@ This policy outlines how security researchers and the public can responsibly rep
 | **Primary** | [security@linkgenetic.com](mailto:security@linkgenetic.com) |
 | **GitHub** | [Report a vulnerability](../../security/advisories/new) button on this repository |
 | **Sensitive findings** | Encrypted channel available on request |
+
+Do not include passwords, API keys, session tokens or unrelated personal data in an
+initial email. Redact evidence and use test accounts you control. If you encounter
+another person's data, stop testing and report the minimum information needed.
+
+Reports under an alias remain welcome. Identity details are requested only when a
+specific payout is being considered, not for submitting or technically validating
+a report. Do not send passport or other identity-document copies, or bank details,
+by ordinary email or through a retest form. If a payout is considered, we will
+arrange an appropriate secure channel and request only the information reasonably
+needed for identity, sanctions and bank-recipient checks.
 
 **Please include in your report:**
 
@@ -144,6 +160,11 @@ Severity is assessed using **CVSS v3.1**, combined with our assessment of actual
 
 > Final reward amounts are at Link Genetic's sole discretion. Duplicate submissions, out-of-scope findings, or violations of the VDP guidelines are not eligible for rewards.
 
+Reward amounts are not guaranteed. A valid report, a High or Critical assessment,
+technical acceptance or a successful retest does not itself establish a monetary
+entitlement, an amount or payment authorization. Technical validation, reward
+assessment and payment approval are separate decisions.
+
 ### 2.4 Eligibility
 
 To be eligible for a reward, researchers must:
@@ -151,9 +172,15 @@ To be eligible for a reward, researchers must:
 - Be the **first** to report the vulnerability
 - Comply with all guidelines in this policy and the VDP
 - Not be a current or former employee, contractor, or affiliate of Link Genetic
-- Not be a resident of a country subject to Swiss export restrictions or **SECO sanctions**
+- Any payout must be permissible under current applicable Swiss sanctions and other applicable legal restrictions, including relevant **SECO measures**. Eligibility is assessed for the actual person, recipient, bank and transaction, not by a blanket country rule.
 - Provide a complete, reproducible report with proof of concept
 - Allow a minimum of **90 days** for remediation before public disclosure
+
+Nationality alone is not evidence that a person is sanctioned. Residence may be
+relevant to an applicable restriction but is not, by itself, a determination that
+a payment is prohibited. Any additional business-based country or participant
+exclusion requires a separate explicit decision and communication; it must not be
+presented as a legal sanctions requirement or silently applied to earlier commitments.
 
 ### 2.5 Submission Process
 
@@ -170,15 +197,37 @@ Step 3 — Validation
   Security team reproduces and validates the issue
   May request follow-up questions
   Typically 7–21 business days depending on complexity
+  Technical validation does not decide a reward or authorize payment
 
 Step 4 — Remediation
   Fix deployed within VDP timelines
   Researcher notified and may be asked to verify the patch
 
-Step 5 — Reward
-  Reward determined upon fix confirmation
-  Payment via bank transfer (IBAN) or mutually agreed method
-  Processed within 30 days of fix confirmation
+Step 5 — Reward assessment
+  After fix confirmation, review the program terms applicable to the report
+  and any individual commitments
+  Decide separately whether to offer a discretionary reward
+  Communicate any amount and conditions in writing
+  Technical acceptance or a successful retest is not payment authorization
+
+Step 6 — Secure checks and explicit payout approval
+  Only when a specific payout is being considered, conduct reasonable
+  identity verification over an appropriate secure channel
+  Before payment, check current applicable Swiss sanctions, including
+  relevant SECO measures, and verify the bank recipient and account details
+  Record explicit payout approval by the authorized decision-maker
+  Never request identity-document copies or bank details by ordinary
+  email or in a retest form
+
+Step 7 — Bank transfer
+  Bank transfer only; no cryptocurrency or other payment methods
+  Unless an applicable earlier commitment or individual agreement specifies
+  otherwise, payment is typically processed within 30 calendar days after
+  the required checks are complete and explicit written payout approval
+  has been given, whichever occurs later
+  This is a processing target, not an unconditional payment guarantee
+  Communicate any delay and the expected next update; do not silently
+  reset or override an existing agreed deadline
 ```
 
 ### 2.6 Legal & Confidentiality
@@ -191,4 +240,29 @@ All submissions are treated as confidential. By submitting, you agree:
 
 ---
 
-*Link Genetic GmbH reserves the right to modify this policy at any time. Changes will be communicated via our website at [linkgenetic.com/security](https://linkgenetic.com/security).*
+## 3. Policy Version History & Earlier Commitments
+
+Version **1.1**, dated **8 November 2026**, takes effect upon publication of this
+version, not before that date. It aligns this repository with the
+[company security policy](https://linkgenetic.com/security). It clarifies the
+separate technical, reward and payment decisions, bank-transfer-only payouts,
+secure identity and recipient checks, sanctions assessment and the payment
+processing target. The program remains **private/discretionary**; the existing
+VDP, scope and reward ranges are retained.
+
+New rules do not automatically apply to earlier reports or promises. For each
+case, review the program version applicable when the report was made and any
+individual communications, reward promises or payment deadlines. Earlier
+commitments are not silently withdrawn. Any proposed change must be addressed
+explicitly with the researcher, subject to applicable law. A mandatory legal
+payment restriction must be handled separately from any discretionary business
+exclusion.
+
+- [Earlier repository policy — Version 1.0, March 2026](https://github.com/Link-Genetic-Inc/lid/blob/b89fea964d8eb9f32410a8c7b052d41e5d8644d6/SECURITY.md)
+- [Company policy version history and earlier commitments](https://linkgenetic.com/security#policy-history)
+
+*Link Genetic GmbH reserves the right to modify or terminate this program at any
+time. Changes will be communicated via our website at
+[linkgenetic.com/security](https://linkgenetic.com/security), with a version and
+effective date. Changes do not automatically apply retroactively or revoke
+earlier individual commitments.*
