@@ -30,6 +30,7 @@
 <body>
   <section id="abstract">
     <p><dfn data-lt="LinkID">LinkID</dfn> defines a persistent identifier and resolution mechanism for Web resources that remain stable even when the underlying locations change. It specifies identifier syntax, a resolver algorithm, metadata, caching semantics, and security and privacy requirements. LinkID can be expressed as an HTTP URI namespace (<code>https://w3id.org/linkid/&lt;id&gt;</code>) and, if standardized in the IETF, an optional <code>lid:</code> URI scheme.</p>
+    <p class="note"><strong>Status note (2026-10-08):</strong> For the URI scheme and identifier syntax, <a href="draft-linkgenetic-linkid-uri-01.md">draft-linkgenetic-linkid-uri-01</a> is authoritative. The registered scheme is 'linkid:' followed by a lowercase hyphenated UUID (linkid:xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx). References in this document to a 'lid:' scheme and to 32-character identifiers without hyphens are superseded and will be aligned in a future revision.</p>
   </section>
 
   <section id="sotd">
@@ -39,7 +40,7 @@
 <section>
     <h2>Companion Documents</h2>
     <ul>
-      <li><a href="../draft/draft-linkgenetic-linkid-uri-00.md">IETF Internet-Draft: LinkID URI Scheme</a></li>
+      <li><a href="draft-linkgenetic-linkid-uri-01.md">IETF Internet-Draft: LinkID URI Scheme</a></li>
       <li><a href="demo/">Live LinkID Hover Card Preview</a></li>
     </ul>
   </section>

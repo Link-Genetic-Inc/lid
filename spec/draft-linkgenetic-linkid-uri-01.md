@@ -5,13 +5,13 @@ Internet-Draft:
 draft-linkgenetic-linkid-uri-01
 
 Published:  
-5 October 2026
+8 October 2026
 
 Intended Status:  
 Standards Track
 
 Expires:  
-8 April 2027
+11 April 2027
 
 Author:  
 C. Nyffenegger
@@ -30,6 +30,14 @@ This note is to be removed before publishing as an RFC.
 
 This is an individual submission. Discussion takes place on the DISPATCH mailing list (dispatch@ietf.org). Source and issue tracking: <https://github.com/Link-Genetic-Inc/lid>.
 
+**Repository working copy:** The submitted revision -01 is dated 8 October 2026
+and expires on 11 April 2027. The official submitted text is available from the
+[IETF Datatracker](https://datatracker.ietf.org/doc/draft-linkgenetic-linkid-uri/01/).
+This editable copy includes subsequent clarifications of HTTP error handling and
+implementation status; it is not an immutable copy of the submitted document.
+Neither this document nor the DISPATCH presentation constitutes IETF endorsement
+or Working Group adoption.
+
 ## Status of This Memo
 
 This Internet-Draft is submitted in full conformance with the provisions of BCP 78 and BCP 79.
@@ -38,7 +46,7 @@ Internet-Drafts are working documents of the Internet Engineering Task Force (IE
 
 Internet-Drafts are draft documents valid for a maximum of six months and may be updated, replaced, or obsoleted by other documents at any time. It is inappropriate to use Internet-Drafts as reference material or to cite them other than as "work in progress."
 
-This Internet-Draft will expire on 8 April 2027.
+The submitted Internet-Draft expires on 11 April 2027.
 
 ## Copyright Notice
 
@@ -210,15 +218,20 @@ The actionable URI, or null if none is authorized.
       "target_url": "https://example.org/resource"
     }
 
-Error responses are JSON objects with an "error" member:
+Unsuccessful responses are JSON objects with an "error" member that names the reason. Resolvers SHOULD use the following status codes and error values:
 
-| HTTP status | error              | Meaning                                         |
-|-------------|--------------------|-------------------------------------------------|
-| 400         | invalid_identifier | Input does not conform to [Section 3](#syntax). |
-| 404         | not_found          | No record for the LinkID (unknown).             |
-| 410         | gone               | Record withdrawn or erased.                     |
+| HTTP status | error                   | Condition                                                         |
+|-------------|-------------------------|-------------------------------------------------------------------|
+| 400         | invalid_identifier      | Input does not conform to [Section 3](#syntax).                   |
+| 403         | policy_denied           | policy-denied                                                     |
+| 404         | not_found               | unknown                                                           |
+| 404         | no_target               | Known LinkID without an authorized or reachable target (inactive) |
+| 410         | gone                    | revoked or tombstoned                                             |
+| 503         | temporarily_unavailable | temporarily-unavailable                                           |
 
 [Table 1](#table-1): [Error Responses](#name-error-responses)
+
+Resolvers MAY use more specific error values and other 4xx status codes. Clients MUST treat only 404 with "not_found" as the unknown condition; any other error for a known LinkID MUST NOT be interpreted as unknown and MUST NOT lead to navigation.
 
 Clients MUST NOT interpret an HTML page, a transport failure or an intermediary error as a resolution result. A server error is not evidence that a LinkID is unknown.
 
@@ -429,18 +442,18 @@ Organization:
 Link Genetic GmbH
 
 Implementation:  
-LinkID platform, resolver and SDKs (<https://github.com/Link-Genetic-Inc/lid>)
+LinkID platform and public resolver (proprietary); client SDKs and this specification at <https://github.com/Link-Genetic-Inc/lid>
 
 Licensing:  
-See the repository.
+Platform and resolver: proprietary. SDKs: see the repository.
 
 Contact:  
 christian.nyffenegger@linkgenetic.com
 
 Coverage and maturity:
 
-- Allocation: new identifiers are generated as UUID version 4. Some historically allocated records predate this revision's syntax and are retained without renumbering.
-- Resolution: a public JSON endpoint, /api/public/resolve/{identifier}, implements the binding in [Section 5.3](#https) including the members id, status and target_url and the 400/404/410 error responses. It additionally returns implementation-specific members (scheme, uuid, last_verified_at, registration_agency, version) and accepts some legacy input forms for compatibility. Separate browser routes redirect to targets.
+- Allocation: all identifier-creating paths, including DOI rescue and test data generation, generate UUID version 4 identifiers from a cryptographically secure source. Records allocated before this revision, including some with non-UUID identifiers, are retained and remain resolvable without renumbering.
+- Resolution: a public JSON endpoint, /api/public/resolve/{identifier}, returns the members id (always in canonical form), status and target_url as defined in [Section 5.3](#https), and 400 invalid_identifier and 404 not_found. It additionally uses more specific errors: 403 region_blocked, 404 no_target and no_reachable_target, 410 for erased, expired, archived and inactive records, and 451 for suspended records. It returns further implementation-specific members (scheme, uuid, last_verified_at, registration_agency, version) and accepts legacy "lid:" input for compatibility. Separate browser routes redirect to targets.
 - Multiple targets: the data model supports multiple, historical, language-specific and fallback targets per LinkID. A consistent target-selection algorithm across endpoints is not yet defined.
 - Discovery and integrity: implementation-specific resolver descriptors and a signed record format exist under /.well-known/ paths. They are not registered under \[[RFC8615](#RFC8615)\] and are not part of this specification.
 - Federation: independently operated, interoperating resolvers have not yet been demonstrated.
