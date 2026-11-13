@@ -19,6 +19,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Replace the unexecutable legacy conformance suite with isolated public-resolution contract tests.
 - Replace references to nonexistent test infrastructure with runnable SDK and repository checks.
 - Use a valid reproducible Java archive timestamp so packaging does not fail at the ZIP epoch boundary.
+- Preserve `cross-fetch/polyfill` as a declared external runtime import in both JavaScript bundles; add build-artifact regression checks to prevent undeclared top-level `node-fetch` imports.
 
 These changes are maintenance preparation, not a new SDK release. SDK 1.0.1,
 security policy 1.1 and LinkID platform releases have independent version numbers.

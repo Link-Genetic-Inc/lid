@@ -45,7 +45,7 @@ jobs:
       - name: Test
         run: npm run test:coverage
       - name: Public resolution contract (isolated HTTP fixture)
-        run: node --test ../../tests/conformance/resolution-algorithm.test.js
+        run: node --test ../../tests/conformance/resolution-algorithm.test.js ../../tests/conformance/package-artifact.test.js
 
   # ── Python SDK ──────────────────────────────────────────────────
   sdk-python:

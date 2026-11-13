@@ -37,7 +37,7 @@ npm run lint
 npm run type-check
 npm run build
 npm run test:coverage
-node --test ../../tests/conformance/resolution-algorithm.test.js
+node --test ../../tests/conformance/resolution-algorithm.test.js ../../tests/conformance/package-artifact.test.js
 ```
 
 The final command uses an ephemeral HTTP server on loopback to exercise the
