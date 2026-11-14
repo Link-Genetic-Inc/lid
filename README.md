@@ -143,6 +143,8 @@ Patent rights for implementations of the LinkID specification are addressed in [
 ## Standards Activity
 
 - **[IETF 127 — San Francisco, 14–20 November 2026](https://www.ietf.org/meeting/127/)** — [DISPATCH agenda](https://datatracker.ietf.org/meeting/127/materials/agenda-127-dispatch-00): *The LinkID URI Scheme and Resolution Model*, Christian Nyffenegger (remote). The session is **16 November, 09:00–11:00 PST / 18:00–20:00 CET**; this is the session window, not an individual presentation start time. [LinkID presentation resources](https://linkid.linkgenetic.com/ietf-127).
+  - Current PDFs, **14 November 2026, 08:24**: [Presentation — 6 slides](docs/ietf-127/LinkID-IETF127-DISPATCH-Submission-2026-11-14-0824.pdf) · [FAQ — 13 slides](docs/ietf-127/LinkID-IETF127-DISPATCH-FAQ-2026-11-14-0824.pdf).
+    These are presentation materials, not a new Internet-Draft revision or evidence of an IETF submission or approval.
 - [WICG Proposal: LinkID](https://github.com/WICG/proposals/issues/238) – Web Incubator Community Group proposal
 - [TPAC 2025 Breakout Session](https://www.w3.org/events/meetings/ef18fde3-f3f0-498a-addf-d47f33716014/) – LinkID presentation at W3C TPAC 2025, Kobe
 - [TPAC 2025 Session Proposal](https://github.com/w3c/tpac2025-breakouts/issues/83) – Original session proposal and discussion
